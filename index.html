@@ -224,6 +224,10 @@
             .content-frame {
                 min-height: calc(100vh - 80px);
             }
+            
+            .toggle-side-nav.shifted {
+                left: 296px;
+            }
         }
 
         .content-frame {
@@ -351,9 +355,11 @@
                 if (isNavExpanded) {
                     sideNav.classList.add('expanded');
                     overlay.classList.add('visible');
+                    toggleBtn.classList.add('shifted');
                 } else {
                     sideNav.classList.remove('expanded');
                     overlay.classList.remove('visible');
+                    toggleBtn.classList.remove('shifted');
                 }
             } else {
                 // On desktop devices
@@ -455,10 +461,11 @@
                 sideNav.classList.remove('collapsed');
                 if (isNavExpanded) {
                     sideNav.classList.add('expanded');
+                    toggleBtn.classList.add('shifted');
                 } else {
                     sideNav.classList.remove('expanded');
+                    toggleBtn.classList.remove('shifted');
                 }
-                toggleBtn.classList.remove('shifted');
             } else {
                 // Desktop device
                 sideNav.classList.remove('expanded');

@@ -170,7 +170,7 @@
             justify-content: center;
             font-size: 24px;
             cursor: pointer;
-            z-index: 999;
+            z-index: 1001;
             color: var(--text-color);
             transition: left 0.3s ease-in-out;
         }
@@ -183,13 +183,47 @@
             flex: 1;
             overflow-y: auto;
             padding: 20px;
-            transition: margin-left 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
             position: relative;
-            margin-left: 0;
+            width: 100%;
         }
 
-        .content-container.sidebar-collapsed {
-            margin-left: -280px;
+        @media (min-width: 768px) {
+            .content-container {
+                margin-left: 0;
+            }
+            
+            .content-container.sidebar-collapsed {
+                margin-left: -280px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            body {
+                overflow: auto;
+            }
+            
+            .side-nav {
+                position: fixed;
+                width: 280px;
+                transform: translateX(-280px);
+                top: 0;
+                left: 0;
+                height: 100%;
+            }
+            
+            .side-nav.expanded {
+                transform: translateX(0);
+            }
+            
+            .content-container {
+                padding: 10px;
+                overflow: visible;
+            }
+            
+            .content-frame {
+                min-height: calc(100vh - 80px);
+            }
         }
 
         .content-frame {
@@ -197,6 +231,7 @@
             height: 100%;
             border: none;
             background-color: var(--background-color);
+            overflow: auto;
         }
 
         .loading-indicator {
@@ -224,19 +259,19 @@
             to { transform: rotate(360deg); }
         }
 
-        @media (max-width: 767px) {
-            .side-nav {
-                position: fixed;
-                transform: translateX(-280px);
-            }
-            
-            .side-nav.expanded {
-                transform: translateX(0);
-            }
-            
-            .toggle-side-nav.shifted {
-                left: 16px;
-            }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        .overlay.visible {
+            display: block;
         }
     </style>
 </head>
@@ -283,6 +318,7 @@
     </div>
     
     <div id="toggleSideNav" class="toggle-side-nav">☰</div>
+    <div id="overlay" class="overlay"></div>
     
     <div class="content-container" id="contentContainer">
         <iframe id="contentFrame" class="content-frame" src="home.html"></iframe>
@@ -298,6 +334,7 @@
         const contentFrame = document.getElementById('contentFrame');
         const loadingIndicator = document.getElementById('loadingIndicator');
         const contentContainer = document.getElementById('contentContainer');
+        const overlay = document.getElementById('overlay');
         
         // Sidebar state
         let isNavExpanded = true;
@@ -313,10 +350,10 @@
                 // On mobile devices
                 if (isNavExpanded) {
                     sideNav.classList.add('expanded');
-                    contentContainer.classList.remove('sidebar-collapsed');
+                    overlay.classList.add('visible');
                 } else {
                     sideNav.classList.remove('expanded');
-                    contentContainer.classList.add('sidebar-collapsed');
+                    overlay.classList.remove('visible');
                 }
             } else {
                 // On desktop devices
@@ -442,7 +479,7 @@
                 isNavExpanded = false;
                 sideNav.classList.remove('expanded');
                 toggleBtn.classList.remove('shifted');
-                contentContainer.classList.add('sidebar-collapsed');
+                overlay.classList.remove('visible');
             } else {
                 isNavExpanded = true;
                 sideNav.classList.remove('collapsed');
@@ -462,6 +499,13 @@
         window.loadHelpPage = function(path) {
             loadPage(path);
         };
+
+        // Add overlay click handler
+        overlay.addEventListener('click', function() {
+            if (isNavExpanded) {
+                toggleSideNav();
+            }
+        });
     </script>
 </body>
 </html> 

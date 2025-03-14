@@ -185,6 +185,11 @@
             padding: 20px;
             transition: margin-left 0.3s ease-in-out;
             position: relative;
+            margin-left: 0;
+        }
+
+        .content-container.sidebar-collapsed {
+            margin-left: -280px;
         }
 
         .content-frame {
@@ -292,6 +297,7 @@
         const toggleBtn = document.getElementById('toggleSideNav');
         const contentFrame = document.getElementById('contentFrame');
         const loadingIndicator = document.getElementById('loadingIndicator');
+        const contentContainer = document.getElementById('contentContainer');
         
         // Sidebar state
         let isNavExpanded = true;
@@ -307,17 +313,21 @@
                 // On mobile devices
                 if (isNavExpanded) {
                     sideNav.classList.add('expanded');
+                    contentContainer.classList.remove('sidebar-collapsed');
                 } else {
                     sideNav.classList.remove('expanded');
+                    contentContainer.classList.add('sidebar-collapsed');
                 }
             } else {
                 // On desktop devices
                 if (isNavExpanded) {
                     sideNav.classList.remove('collapsed');
                     toggleBtn.classList.add('shifted');
+                    contentContainer.classList.remove('sidebar-collapsed');
                 } else {
                     sideNav.classList.add('collapsed');
                     toggleBtn.classList.remove('shifted');
+                    contentContainer.classList.add('sidebar-collapsed');
                 }
             }
             
@@ -432,10 +442,12 @@
                 isNavExpanded = false;
                 sideNav.classList.remove('expanded');
                 toggleBtn.classList.remove('shifted');
+                contentContainer.classList.add('sidebar-collapsed');
             } else {
                 isNavExpanded = true;
                 sideNav.classList.remove('collapsed');
                 toggleBtn.classList.add('shifted');
+                contentContainer.classList.remove('sidebar-collapsed');
             }
             
             // Initialize active item

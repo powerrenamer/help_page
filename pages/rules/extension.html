@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Extension Rule</title>
+        <link rel="stylesheet" href="../../styles/main.css" />
+    </head>
+    <body>
+        <div class="container">
+            <main class="content">
+                <h2>Extension Rule</h2>
+                <p>
+                    The extension rule allows you to modify, add, or remove file extensions. This rule can also detect extensions based on magic numbers (with limitations). Here's a detailed usage
+                    guide.
+                </p>
+
+                <section class="features">
+                    <h2>Feature Overview</h2>
+                    <ul>
+                        <li>Change file extensions to new specified extensions</li>
+                        <li>Add new extensions while preserving original ones</li>
+                        <li>Remove duplicate extensions</li>
+                        <li>Set correct extensions using magic number detection</li>
+                        <li>Case-sensitive extension handling</li>
+                    </ul>
+                </section>
+
+                <section class="usage">
+                    <h2>Usage Steps</h2>
+
+                    <div class="step">
+                        <h3>1. Set New Extension</h3>
+                        <div class="example-block">
+                            <p>In the "Extension Settings" section:</p>
+                            <ul>
+                                <li>Enter new extension without the dot (.)</li>
+                                <li>
+                                    Example: Enter
+                                    <code>jpg</code>
+                                    not
+                                    <code>.jpg</code>
+                                </li>
+                                <li>Leave empty to remove extension</li>
+                                <li>This field is disabled when magic number detection is enabled</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3>2. Configure Additional Options</h3>
+                        <div class="example-block">
+                            <h4>Append to Original Extension</h4>
+                            <p>When enabled, adds new extension while keeping the original</p>
+                            <code>document.txt → document.txt.pdf</code>
+                            <p>When disabled, replaces existing extension:</p>
+                            <code>document.txt → document.pdf</code>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Use Magic Number Detection</h4>
+                            <p>When enabled, checks file content to determine correct extension (with limitations)</p>
+                            <ul>
+                                <li>Automatically identifies file type based on binary content</li>
+                                <li>Useful for fixing files with incorrect extensions</li>
+                                <li>Some file types may share the same signature</li>
+                                <li>Files with ambiguous or unrecognizable signatures keep their extensions unchanged</li>
+                            </ul>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Remove Duplicate Extensions</h4>
+                            <p>When enabled, removes duplicate extensions</p>
+                            <code>document.txt.txt → document.txt</code>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Case Sensitive</h4>
+                            <p>When enabled, treats extensions with different cases as different when removing duplicates</p>
+                            <code>Case sensitivity off: file.PDF.pdf → file.PDF</code>
+                            <code>Case sensitivity on: file.PDF.pdf remains unchanged</code>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="examples">
+                    <h2>Example Scenarios</h2>
+
+                    <div class="example-block">
+                        <h3>Simple Extension Change</h3>
+                        <ul>
+                            <li>New extension: mp4</li>
+                            <li>Append to original extension: disabled</li>
+                            <li>
+                                Result:
+                                <code>video.avi → video.mp4</code>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="example-block">
+                        <h3>Add Secondary Extension</h3>
+                        <ul>
+                            <li>New extension: backup</li>
+                            <li>Append to original extension: enabled</li>
+                            <li>
+                                Result:
+                                <code>document.docx → document.docx.backup</code>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="example-block">
+                        <h3>Clean Duplicate Extensions</h3>
+                        <ul>
+                            <li>New extension: (empty)</li>
+                            <li>Remove duplicate extensions: enabled</li>
+                            <li>
+                                Result:
+                                <code>image.jpg.jpg.jpg → image.jpg</code>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="example-block">
+                        <h3>Automatic File Type Detection</h3>
+                        <ul>
+                            <li>Use magic number detection: enabled</li>
+                            <li>
+                                Result:
+                                <code>unknown_file → unknown_file.png</code>
+                                (if PNG type detected)
+                            </li>
+                            <li>
+                                Result:
+                                <code>wrong.txt → wrong.jpg</code>
+                                (if JPEG type detected)
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="notes">
+                    <h2>Important Notes</h2>
+
+                    <div class="note-card">
+                        <h3>Magic Number Detection</h3>
+                        <ul>
+                            <li>Some file types may share the same signature, so certain formats might not be detectable</li>
+                            <li>Ambiguous files will remain unchanged</li>
+                            <li>Detection is based on file content, not existing extension</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Extension Format</h3>
+                        <ul>
+                            <li>Don't include the dot (.) when entering new extensions</li>
+                            <li>The rule will automatically handle dot separators</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Duplicate Processing</h3>
+                        <ul>
+                            <li>Case sensitivity affects how duplicates are identified</li>
+                            <li>Duplicates are removed from left to right until a non-duplicate is found</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Extension Preservation</h3>
+                        <ul>
+                            <li>When appending, both new and old extensions are kept</li>
+                            <li>When not appending, old extension is replaced</li>
+                            <li>Empty extension input will completely remove extensions</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>

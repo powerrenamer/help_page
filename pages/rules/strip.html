@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Strip Rule</title>
+        <link rel="stylesheet" href="../../styles/main.css" />
+        <script src="../../styles/main.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <main class="content">
+                <h2>Strip Rule</h2>
+
+                <p>The strip rule allows you to remove or keep specific types of characters in filenames.</p>
+
+                <section class="features">
+                    <h2>Feature Overview</h2>
+                    <ul>
+                        <li>Support filtering multiple types of characters</li>
+                        <li>Choose filtering position</li>
+                        <li>Support keeping or removing matching characters</li>
+                        <li>Option for case sensitivity</li>
+                        <li>Option for extension handling</li>
+                    </ul>
+                </section>
+
+                <section class="usage">
+                    <h2>Filter Options</h2>
+
+                    <div class="example">
+                        <h4>Filterable Character Types</h4>
+                        <div class="example-content">
+                            <div class="example-block">
+                                <h4>English Letters</h4>
+                                <p>Includes all English letters a-z</p>
+                                <code>abcdefghijklmnopqrstuvwxyz</code>
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Numbers</h4>
+                                <p>Includes all numbers 0-9</p>
+                                <code>1234567890</code>
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Symbols</h4>
+                                <p>Common special symbols</p>
+                                <code>!?@#$%^&~`_+-=</code>
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Brackets</h4>
+                                <p>Various types of brackets</p>
+                                <code>(){}[]</code>
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Custom Text</h4>
+                                <p>Specify any characters to filter</p>
+                                <code>Any user-defined combination of characters</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example">
+                        <h4>Filter Position</h4>
+                        <div class="example-content">
+                            <div class="example-block">
+                                <h4>Any Position</h4>
+                                <p>Find and process matching characters throughout the filename</p>
+                                <code>file(1).txt → file.txt (remove brackets and numbers)</code>
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Start of Filename</h4>
+                                <p>Only process matching characters at the beginning of filename</p>
+                                <code>123file.txt → file.txt (remove leading numbers)</code>
+                            </div>
+
+                            <div class="example-block">
+                                <h4>End of Filename</h4>
+                                <p>Only process matching characters at the end of filename</p>
+                                <code>file123.txt → file.txt (remove trailing numbers)</code>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="options">
+                    <h2>Advanced Options</h2>
+
+                    <div class="example">
+                        <h4>Processing Mode</h4>
+                        <div class="example-content">
+                            <div class="example-block">
+                                <h4>Remove Matching Characters</h4>
+                                <p>Delete all matching characters (default mode)</p>
+                                <code>file123.txt → file.txt (remove numbers)</code>
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Keep Matching Characters</h4>
+                                <p>Keep only matching characters, delete everything else</p>
+                                <code>file123.txt → 123.txt (keep only numbers)</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example">
+                        <h4>Other Options</h4>
+                        <div class="example-content">
+                            <div class="example-block">
+                                <h4>Case Sensitive</h4>
+                                <p>When enabled, uppercase and lowercase letters are treated as different characters</p>
+                                <code>FileNAME.txt → Result depends on whether uppercase or lowercase letters are selected for filtering</code>
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Ignore Extension</h4>
+                                <p>When enabled, won't process the file extension part</p>
+                                <code>file123.txt → file.txt (instead of file123txt)</code>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="notes">
+                    <h2>Important Notes</h2>
+
+                    <div class="note-card">
+                        <h3>Option Combinations</h3>
+                        <ul>
+                            <li>Multiple character types can be selected for filtering simultaneously</li>
+                            <li>Keep matching characters mode changes the processing logic</li>
+                            <li>Recommended to test effects on a small set of files first</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>File Extensions</h3>
+                        <ul>
+                            <li>Recommended to keep "Ignore Extension" option enabled</li>
+                            <li>Be cautious when processing extensions</li>
+                            <li>Changing extensions may make files unopenable</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Processing Tips</h3>
+                        <ul>
+                            <li>Preview changes before applying</li>
+                            <li>Backup important files</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>

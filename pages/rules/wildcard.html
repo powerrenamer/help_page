@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wildcards</title>
+        <link rel="stylesheet" href="../../styles/main.css" />
+    </head>
+    <body>
+        <div class="container">
+            <main class="content">
+                <h2>Wildcards</h2>
+                <p>Wildcards allow you to use simple pattern matching symbols for file renaming operations. Here's a detailed explanation and usage guide for wildcard rules.</p>
+
+                <h2>Wildcard Patterns</h2>
+
+                <div class="example-block">
+                    <h3>Asterisk (*)</h3>
+                    <p>Matches any number of characters (including zero characters)</p>
+                    <ul>
+                        <li>
+                            <code>*.txt</code>
+                            - Matches all text files: file.txt, document.txt, note.txt
+                        </li>
+                        <li>
+                            <code>doc*</code>
+                            - Matches all files starting with "doc": doc.txt, document.pdf
+                        </li>
+                        <li>
+                            <code>*2025*</code>
+                            - Matches files containing "2025": report2025.doc, 2025tax.pdf
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-block">
+                    <h3>Question Mark (?)</h3>
+                    <p>Matches any single character</p>
+                    <ul>
+                        <li>
+                            <code>file?.txt</code>
+                            - Matches: file1.txt, fileA.txt, but not file10.txt
+                        </li>
+                        <li>
+                            <code>????.txt</code>
+                            - Matches any txt file with exactly 4 characters in the name
+                        </li>
+                        <li>
+                            <code>doc-?.pdf</code>
+                            - Matches: doc-1.pdf, doc-A.pdf
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-block">
+                    <h3>Square Brackets ([ ])</h3>
+                    <p>Matches any single character within the brackets</p>
+                    <ul>
+                        <li>
+                            <code>file[123].txt</code>
+                            - Matches: file1.txt, file2.txt, file3.txt
+                        </li>
+                        <li>
+                            <code>doc[AB].pdf</code>
+                            - Matches: docA.pdf, docB.pdf
+                        </li>
+                        <li>
+                            <code>image[0-9].jpg</code>
+                            - Matches: image0.jpg through image9.jpg
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="note">
+                    <h3>Usage Tips</h3>
+                    <ul>
+                        <li>
+                            <code>*</code>
+                            is best for matching text of variable length
+                        </li>
+                        <li>
+                            <code>?</code>
+                            is best used when you know the exact position and length
+                        </li>
+                        <li>
+                            <code>[ ]</code>
+                            is best for limited choices at a specific position
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <h3>Important Notes</h3>
+                    <ul>
+                        <li>Start with simple patterns and gradually add complex rules</li>
+                        <li>Use the preview feature to verify matching results</li>
+                        <li>Test with a small set of files before processing large batches</li>
+                        <li>Be aware of unexpected matches that may occur with wildcard combinations</li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

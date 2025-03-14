@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Interface Guide - Power Renamer</title>
+        <link rel="stylesheet" href="../../styles/main.css" />
+        <script src="../../styles/main.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <main class="content">
+                <h2>Interface Guide</h2>
+                <p>This page provides a detailed overview of Power Renamer's interface layout and functional areas.</p>
+
+                <section class="layout">
+                    <h2>Main Interface Layout</h2>
+                    <div class="example">
+                        <h4>Toolbar</h4>
+                        <div class="example-content">
+                            <p>Located at the top of the interface, includes the following function buttons:</p>
+                            <div class="image-container">
+                                <img src="../../images/toolbar.png" alt="Toolbar Interface" class="feature-image" />
+                                <p class="image-caption">Toolbar with Main Function Buttons</p>
+                            </div>
+                            <ul>
+                                <li>Add Files: Select files to rename</li>
+                                <li>Add Rules: redirect to rules pages</li>
+                                <li>Rename: Execute the renaming operation</li>
+                                <li>Undo: Revert the last renaming operation (⚠️ only supports undoing the most recent rename operation)</li>
+                                <li>Right Menu Button: Opens the side menu</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="example">
+                        <h4>Rules Area</h4>
+                        <div class="example-content">
+                            <p>Located in the upper half of the interface, used for managing renaming rules:</p>
+                            <div class="image-container">
+                                <img src="../../images/rules_area.png" alt="Rules Area" class="feature-image" />
+                                <p class="image-caption">Rules Area with Multiple Rules Applied</p>
+                            </div>
+                            <ul>
+                                <li>Rules List: Displays all currently applied rules</li>
+                                <li>
+                                    Rule Items:
+                                    <div class="image-container">
+                                        <img src="../../images/rule_item.png" alt="Rule Item Details" class="feature-image" />
+                                        <p class="image-caption">Rule Item with Controls</p>
+                                    </div>
+                                    <ul>
+                                        <li>Toggle Checkbox: disable/enable rules</li>
+                                        <li>Info Button: Display rule settings information</li>
+                                        <li>Settings Button: Navigate to rule configuration page</li>
+                                        <li>Delete Button: Remove rule</li>
+                                        <li>Drag Handle or Long Press: Adjust rule order</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="example">
+                        <h4>File List</h4>
+                        <div class="example-content">
+                            <p>Located in the lower half of the interface, displays files to be renamed:</p>
+                            <div class="image-container">
+                                <img src="../../images/file_list_overview.png" alt="File List Overview" class="feature-image" />
+                                <p class="image-caption">File List Overview</p>
+                            </div>
+                            <ul>
+                                <li>Original Filename: Shows the current filename</li>
+                                <li>New Filename: Shows preview after applying rules</li>
+                                <li>Info Button: Displays original filename, new filename, original path and status information</li>
+                                <li>Delete Button: Remove file from the list</li>
+                                <li>Checkbox: Select files for batch operations</li>
+                                <li>Long press on any checkbox to pop up a selection menu</li>
+                                <li>
+                                    Sorting Functionality:
+                                    <div class="image-container">
+                                        <img src="../../images/file_sorting.png" alt="File Sorting Options" class="feature-image" />
+                                        <p class="image-caption">File Sorting Options</p>
+                                    </div>
+                                    <ul>
+                                        <li>Filename: Sort by original filename (click to toggle ascending/descending)</li>
+                                        <li>New Filename: Sort by renamed filename (click to toggle ascending/descending)</li>
+                                        <li>Status: Sort by file status (click to toggle ascending/descending)</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Clear Menu:
+                                    <div class="image-container">
+                                        <img src="../../images/clear_menu.png" alt="Clear Menu Options" class="feature-image" />
+                                        <p class="image-caption">Clear Menu Options</p>
+                                    </div>
+                                    <ul>
+                                        <li>Click clear icon<img src="../../images/clear_icon.png" alt="Clear Icon" class="feature-image" /> to display the menu</li>
+                                        <li>Clear All: Remove all files from the list</li>
+                                        <li>Clear Invalid Items: Remove files with validation errors</li>
+                                        <li>Clear Rename Failed: Remove files that failed during rename</li>
+                                        <li>Clear Restore Failed: Remove files that failed during undo</li>
+                                        <li>Clear Renamed: Remove successfully renamed files</li>
+                                        <li>Clear Restored: Remove successfully restored files</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Selection Menu (long-press on any checkbox):
+                                    <div class="image-container">
+                                        <img src="../../images/selection_menu.png" alt="Selection Menu Options" class="feature-image" />
+                                        <p class="image-caption">Selection Menu Options</p>
+                                    </div>
+                                    <ul>
+                                        <li>Select All: Select all files in the list</li>
+                                        <li>Deselect All: Clear all selections</li>
+                                        <li>Invert Selection: Select unselected files and deselect selected files</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Individual Filename Editing:
+                                    <div class="image-container">
+                                        <img src="../../images/filename_edit.png" alt="Filename Edit" class="feature-image" />
+                                        <p class="image-caption">Individual Filename Editing</p>
+                                    </div>
+                                    <ul>
+                                        <li>Long-press on any file list item to enter individual filename editing mode</li>
+                                        <li>Directly edit the new filename in the text field that appears</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="example">
+                        <h4>Divider Bar</h4>
+                        <div class="example-content">
+                            <p>Located between the rules area and file list:</p>
+                            <div class="image-container">
+                                <img src="../../images/divider_bar.png" alt="Divider Bar" class="feature-image" />
+                                <p class="image-caption">Divider Bar for Resizing Sections</p>
+                            </div>
+                            <ul>
+                                <li>Long press and drag to adjust the size of both areas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="features">
+                    <h2>Feature Areas Guide</h2>
+
+                    <div class="example">
+                        <h4>Side Menu</h4>
+                        <div class="example-content">
+                            <p>Contains the following function options:</p>
+                            <div class="image-container">
+                                <img src="../../images/side_menu.png" alt="Side Menu" class="feature-image" />
+                                <p class="image-caption">Side Menu with Options</p>
+                            </div>
+                            <ul>
+                                <li>Preset Management: Save and load rule combinations</li>
+                                <li>Language Settings: Switch interface language</li>
+                                <li>Help Documentation: Open this help system</li>
+                                <li>About: Display application information</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="example">
+                        <h4>Preset Management</h4>
+                        <div class="example-content">
+                            <p>Used for managing renaming rule combinations:</p>
+                            <div class="image-container">
+                                <img src="../../images/preset_management.png" alt="Preset Management" class="feature-image" />
+                                <p class="image-caption">Preset Management Interface</p>
+                            </div>
+                            <ul>
+                                <li>Save Preset: Save current rules as a preset</li>
+                                <li>Load Preset: Apply a saved preset</li>
+                                <li>Delete Preset: Remove unwanted presets</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="notes">
+                    <h2>Interface Usage Tips</h2>
+
+                    <div class="note-card">
+                        <h3>Rule Management</h3>
+                        <div class="image-container">
+                            <img src="../../images/rule_management_tips.png" alt="Rule Management Tips" class="feature-image" />
+                            <p class="image-caption">Effective Rule Management Techniques</p>
+                        </div>
+                        <ul>
+                            <li>Use drag and drop to adjust rule order</li>
+                            <li>Temporarily disable rules to test effects</li>
+                            <li>Use presets to save frequently used combinations</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Delete Rule</title>
+        <link rel="stylesheet" href="../../styles/main.css" />
+        <script src="../../styles/main.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <main class="content">
+                <h2>Delete Rule</h2>
+                <p>
+                    The delete rule allows you to remove specified text or characters from filenames. This rule provides multiple deletion modes and options to help you precisely control what to
+                    delete.
+                </p>
+
+                <section class="features">
+                    <h2>Feature Overview</h2>
+                    <ul>
+                        <li>Support deleting characters from specified delimiter</li>
+                        <li>Support deleting characters from specified position</li>
+                        <li>Support deleting specified number of characters</li>
+                        <li>Support deleting until specified delimiter</li>
+                        <li>Support deleting to end of file</li>
+                        <li>Support right-to-left character deletion</li>
+                        <li>Support preserving delimiters</li>
+                        <li>Support ignoring extensions</li>
+                        <li>Support deleting current name</li>
+                    </ul>
+                </section>
+
+                <section class="usage">
+                    <h2>Usage Steps</h2>
+
+                    <div class="example">
+                        <h4>1. Position-Based Deletion</h4>
+                        <div class="example-content">
+                            <div class="example-block">
+                                <h4>Left to Right Delete</h4>
+                                <p>Delete specified number of characters starting from specified position</p>
+                                <code>IMG_1234.jpg → 1234.jpg</code>
+                                (Delete 4 characters starting from position 1)
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Right to Left Delete</h4>
+                                <p>Count from right side, delete specified number of characters at specified position (including the character at that position)</p>
+                                <code>photo_2024_old.jpg → photo_2old.jpg</code>
+                                (From 4th character '_' from right, delete 4 characters including '_', i.e., delete "024_")
+                                <p class="note">Note: Deletion range includes the starting position character</p>
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Delete to End</h4>
+                                <p>Delete from specified position to the end of filename</p>
+                                <code>photo_2024_old.jpg → photo.jpg</code>
+                                (Delete from position 6 to end)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example">
+                        <h4>2. Delimiter-Based Deletion</h4>
+                        <div class="example-content">
+                            <div class="example-block">
+                                <h4>Delete Specified Count</h4>
+                                <p>Delete specified number of characters starting from delimiter</p>
+                                <code>photo_2024_old.jpg → photo2024_old.jpg</code>
+                                (Delete 1 character starting from "_" delimiter)
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Delete to Next Delimiter</h4>
+                                <p>Delete from one delimiter to another delimiter</p>
+                                <code>photo_2024_old.jpg → photoold.jpg</code>
+                                (Delete from first "_" to second "_")
+                                <p class="note">Note: Assuming "Preserve Delimiters" is not selected</p>
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Preserve Delimiters Option</h4>
+                                <p>Option to keep delimiters when deleting content</p>
+                                <code>photo_2024_old.jpg → photo__old.jpg</code>
+                                (Delete content between delimiters but keep delimiters)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example">
+                        <h4>3. Special Options</h4>
+                        <div class="example-content">
+                            <div class="example-block">
+                                <h4>Ignore Extension</h4>
+                                <p>When enabled, deletion operation won't affect file extension</p>
+                                <code>photo.txt.jpg → photo.jpg</code>
+                                (Protect final extension when deleting ".txt")
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Delete Current Name</h4>
+                                <p>Delete current filename while keeping extension (if ignore extension is enabled)</p>
+                                <code>photo_2024.jpg → .jpg</code>
+                                (Delete entire filename but keep extension)
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="notes">
+                    <h2>Important Notes</h2>
+
+                    <div class="note-card">
+                        <h3>Delete Position</h3>
+                        <ul>
+                            <li>When using specified position mode, positions are counted starting from 1</li>
+                            <li>For right-to-left deletion: first count from right to specified position, then delete specified number of characters including starting position</li>
+                            <li>Example: In "example.txt", deleting 3 characters from 3rd position (p) from right will delete "amp" (including p itself)</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Extension Handling</h3>
+                        <ul>
+                            <li>Recommended to enable "Ignore Extension" to protect file type</li>
+                            <li>If processing extensions, ensure it won't affect file usability</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>

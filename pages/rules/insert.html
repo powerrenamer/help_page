@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Insert Rule</title>
+        <link rel="stylesheet" href="../../styles/main.css" />
+    </head>
+    <body>
+        <div class="container">
+            <main class="content">
+                <h2>Insert Rule</h2>
+                <p>The insert text rule allows you to insert custom text at specific positions in filenames in various ways. Here's a detailed usage guide.</p>
+
+                <section class="features">
+                    <h2>Feature Overview</h2>
+                    <ul>
+                        <li>Insert text at the beginning or end of filenames</li>
+                        <li>Insert text at a specified character position in filenames</li>
+                        <li>Insert text before or after specified target text in filenames</li>
+                        <li>Replace entire filename with specific text</li>
+                        <li>Option to ignore file extensions, ensuring insert operations don't affect file types</li>
+                        <li>Insert metadata tags</li>
+                    </ul>
+                </section>
+
+                <section class="usage">
+                    <h2>Usage Steps</h2>
+
+                    <div class="step">
+                        <h3>1. Set Text to Insert</h3>
+                        <div class="example-block">
+                            <p>
+                                In the "Insert Text" section, enter the text you want to insert. For example:
+                                <code>_New</code>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3>2. Choose Insert Position</h3>
+                        <div class="example-block">
+                            <h4>Prefix Mode</h4>
+                            <p>Insert text at the beginning of filename</p>
+                            <code>example.txt → _Newexample.txt</code>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Suffix Mode</h4>
+                            <p>Insert text at the end of filename</p>
+                            <code>example.txt → example_New.txt</code>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Specific Position</h4>
+                            <p>Insert text at a specified character position in filename</p>
+                            <code>example.txt → ex_Newample.txt</code>
+                            (Insert at position 3)
+                            <p>Optional: Enable "Right to Left" to count position from the end of filename</p>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Before Target Text</h4>
+                            <p>Insert text before specified target text</p>
+                            <code>example.txt → ex_Newample.txt</code>
+                            (Target text is "ample")
+                        </div>
+
+                        <div class="example-block">
+                            <h4>After Target Text</h4>
+                            <p>Insert text after specified target text</p>
+                            <code>example.txt → ex_Newample.txt</code>
+                            (Target text is "ex")
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Replace Current Name</h4>
+                            <p>Replace entire filename with custom text</p>
+                            <code>example.txt → NewFile.txt</code>
+                            (Ignore extension enabled)
+                            <code>example.txt → NewFile</code>
+                            (Ignore extension disabled)
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3>3. Configure Additional Options</h3>
+                        <div class="example-block">
+                            <h4>Ignore Extension</h4>
+                            <p>When enabled, insert operation only affects filename, keeping file extension unchanged</p>
+                            <code>example.txt → example_New.txt</code>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Right to Left</h4>
+                            <p>When enabled in specific position mode, character position is counted from the end of filename</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="notes">
+                    <h2>Important Notes</h2>
+
+                    <div class="note-card">
+                        <h3>Target Text Matching</h3>
+                        <ul>
+                            <li>When using "Before Text" or "After Text" modes, ensure target text exists in the filename</li>
+                            <li>Insert operation will not take effect if target text is not found</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Valid Character Positions</h3>
+                        <ul>
+                            <li>In specific position mode, character position must be within filename length</li>
+                            <li>Invalid positions will be ignored</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Extension Handling</h3>
+                        <ul>
+                            <li>When "Ignore Extension" is enabled, insert operation won't affect file extensions</li>
+                            <li>In replace current name mode, this option controls whether to preserve original extension</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>

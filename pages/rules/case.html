@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Case Rule</title>
+        <link rel="stylesheet" href="../../styles/main.css" />
+    </head>
+    <body>
+        <div class="container">
+            <main class="content">
+                <h2>Case Rule</h2>
+                <p>The case rule allows you to modify filename case in multiple ways. Here's a detailed usage guide.</p>
+
+                <section class="features">
+                    <h2>Feature Overview</h2>
+                    <ul>
+                        <li>Capitalize first letter of each word in filename</li>
+                        <li>Convert entire filename to lowercase</li>
+                        <li>Convert entire filename to uppercase</li>
+                        <li>Invert case of each character</li>
+                        <li>Capitalize only first letter</li>
+                        <li>Apply sentence case (capitalize first letter of each sentence)</li>
+                        <li>Apply case changes to specific text segments</li>
+                        <li>Control file extension handling separately</li>
+                    </ul>
+                </section>
+
+                <section class="usage">
+                    <h2>Usage Steps</h2>
+
+                    <div class="step">
+                        <h3>1. Choose Case Type</h3>
+                        <div class="example-block">
+                            <h4>Title Case</h4>
+                            <p>Convert first letter of each word to uppercase</p>
+                            <code>my_file_name.txt → My_File_Name.txt</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Lowercase</h4>
+                            <p>Convert all characters to lowercase</p>
+                            <code>MyFileName.TXT → myfilename.txt</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Uppercase</h4>
+                            <p>Convert all characters to uppercase</p>
+                            <code>my_file.txt → MY_FILE.txt</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Invert Case</h4>
+                            <p>Convert uppercase to lowercase and lowercase to uppercase</p>
+                            <code>MyFile.txt → mYfILE.txt</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>First Letter Only</h4>
+                            <p>Capitalize only the first letter of the filename</p>
+                            <code>my_file.txt → My_file.txt</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Sentence Case</h4>
+                            <p>Capitalize first letter of each sentence</p>
+                            <code>my file name.txt → My file name.txt</code>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3>2. Configure Target Segments</h3>
+                        <div class="example-block">
+                            <h4>Apply to Specific Segments</h4>
+                            <p>When enabled, specified text segments maintain their case regardless of other options</p>
+                            <p>Use commas to separate multiple text segments</p>
+                            <p>Example (using segments "MY,Is,jack"):</p>
+                            <code>my_name_is_Jack.mp3 → MY_name_Is_jack.MP3</code>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3>3. Set Extension Options</h3>
+                        <div class="example-block">
+                            <h4>Ignore Extension</h4>
+                            <p>When enabled, case changes won't affect file extension</p>
+                            <code>myfile.txt → MYFILE.txt</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Lowercase Extension</h4>
+                            <p>Force file extension to lowercase</p>
+                            <code>myFile.TXT → myFile.txt</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Uppercase Extension</h4>
+                            <p>Force file extension to uppercase</p>
+                            <code>myFile.txt → myFile.TXT</code>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="notes">
+                    <h2>Important Notes</h2>
+
+                    <div class="note-card">
+                        <h3>Extension Handling</h3>
+                        <ul>
+                            <li>Extension options take precedence over main case conversion</li>
+                            <li>Only one extension case option (lowercase or uppercase) can be active at a time</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Target Segment Processing</h3>
+                        <ul>
+                            <li>Multiple segments should be comma-separated</li>
+                            <li>Segments are processed in the order listed</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Special Characters</h3>
+                        <ul>
+                            <li>Case conversion only affects letters</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>

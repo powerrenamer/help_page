@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Regular Expression Rule</title>
+        <link rel="stylesheet" href="../../styles/main.css" />
+    </head>
+    <body>
+        <div class="container">
+            <main class="content">
+                <h2>Regular Expression Rule</h2>
+                <p>The regular expression rule allows you to use powerful pattern matching and replacement features for renaming files. Here's a detailed usage guide.</p>
+
+                <h2>Feature Overview</h2>
+                <ul>
+                    <li>Use regular expressions for pattern matching</li>
+                    <li>Support advanced text replacement and backreferences</li>
+                    <li>Support case sensitivity options</li>
+                    <li>Support extension protection</li>
+                    <li>Insert metadata tags</li>
+                </ul>
+
+                <h2>Usage Steps</h2>
+                <div class="example-block">
+                    <h3>1. Configure Search and Replace</h3>
+                    <p>In the "Search and Replace" section:</p>
+                    <ul>
+                        <li>
+                            <strong>Regular Expression:</strong>
+                            Enter the search pattern
+                            <ul>
+                                <li>
+                                    <code>\\d+</code>
+                                    - Match any sequence of numbers
+                                </li>
+                                <li>
+                                    <code>(old)-(new)</code>
+                                    - Capture two groups separated by a hyphen
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Replacement Text:</strong>
+                            Specify the replacement pattern
+                            <ul>
+                                <li>
+                                    Use
+                                    <code>$1</code>
+                                    ,
+                                    <code>$2</code>
+                                    etc. to reference captured groups
+                                </li>
+                                <li>
+                                    Example: Replacing
+                                    <code>(old)-(new)</code>
+                                    with
+                                    <code>$2_$1</code>
+                                    swaps positions and changes the separator
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example-block">
+                    <h3>2. Configure Options</h3>
+                    <ul>
+                        <li>
+                            <strong>Case Sensitive:</strong>
+                            When enabled, pattern matching considers letter case
+                            <ul>
+                                <li>
+                                    Enabled:
+                                    <code>[A-Z]+</code>
+                                    matches only uppercase letters
+                                </li>
+                                <li>
+                                    Disabled:
+                                    <code>[A-Z]+</code>
+                                    matches both upper and lowercase letters
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Ignore Extension:</strong>
+                            When enabled, pattern matching excludes file extension
+                            <ul>
+                                <li>
+                                    For
+                                    <code>file.name.txt</code>
+                                    , pattern applies only to
+                                    <code>file.name</code>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="note">
+                    <h3>Regular Expression Syntax</h3>
+                    <ul>
+                        <li>
+                            <code>\\d</code>
+                            - Match digits
+                        </li>
+                        <li>
+                            <code>\\w</code>
+                            - Match letters, digits, underscores
+                        </li>
+                        <li>
+                            <code>\\s</code>
+                            - Match whitespace characters
+                        </li>
+                        <li>
+                            <code>[...]</code>
+                            - Match character set
+                        </li>
+                        <li>
+                            <code>(...)</code>
+                            - Capture group
+                        </li>
+                        <li>
+                            <code>?</code>
+                            ,
+                            <code>*</code>
+                            ,
+                            <code>+</code>
+                            - Quantifiers
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <h3>Important Notes</h3>
+                    <ul>
+                        <li>Test patterns on a small set of files first</li>
+                        <li>Use the preview feature to verify changes</li>
+                        <li>Be careful not to create invalid filenames</li>
+                        <li>Avoid patterns that might create duplicate filenames</li>
+                        <li>Consider breaking complex patterns into steps</li>
+                    </ul>
+                </div>
+
+                <h2>Backreference Guide</h2>
+                <div class="example-block">
+                    <ul>
+                        <li>
+                            Use
+                            <code>$1</code>
+                            through
+                            <code>$9</code>
+                            to reference captured groups
+                        </li>
+                        <li>Capture groups are numbered from left to right by opening parentheses</li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

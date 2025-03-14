@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Serialize Rule</title>
+        <link rel="stylesheet" href="../../styles/main.css" />
+    </head>
+    <body>
+        <div class="container">
+            <main class="content">
+                <h2>Serialize Rule</h2>
+                <p>
+                    The serialize rule allows you to add sequence numbers or custom sequences to filenames in various formats. This rule is particularly useful when you need to handle a group of files
+                    that require numbering in a specific order.
+                </p>
+
+                <section class="features">
+                    <h2>Feature Overview</h2>
+                    <ul>
+                        <li>Supports multiple sequence types (decimal, alphabetic, Roman numerals, etc.)</li>
+                        <li>Customizable start value, increment, and repeat count</li>
+                        <li>Flexible position options (prefix, suffix, specific position)</li>
+                        <li>Reset intervals and conditions</li>
+                        <li>Replace current name</li>
+                        <li>Zero padding and extension handling</li>
+                        <li>Custom sequence definition</li>
+                    </ul>
+                </section>
+
+                <section class="usage">
+                    <h2>Usage Steps</h2>
+
+                    <div class="step">
+                        <h3>1. Basic Settings</h3>
+                        <div class="example-block">
+                            <h4>Start Value</h4>
+                            <p>Set the initial number for the sequence</p>
+                            <code>file.txt → 1file.txt</code>
+                            <p>Useful for continuing existing sequences</p>
+                        </div>
+                        <div class="example-block">
+                            <h4>Repeat Count</h4>
+                            <p>Set how many files use the same value</p>
+                            <code>file1.txt, file2.txt, file3.txt, file4.txt → 1file1.txt, 1file2.txt, 2file3.txt, 2file4.txt</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Increment</h4>
+                            <p>Set the value to increase by</p>
+                            <code>1file.txt → 2file.txt, 5file.txt, 7file.txt</code>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3>2. Reset Settings</h3>
+                        <div class="example-block">
+                            <h4>Reset Interval</h4>
+                            <p>Reset counter after specified number of files</p>
+                            <code>Reset every 3: 1, 2, 3, 1, 2, 3</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Reset on Folder Change</h4>
+                            <p>Reset when folder changes</p>
+                            <p>Useful when processing files in multiple folders</p>
+                        </div>
+                        <div class="example-block">
+                            <h4>Reset on Name Change</h4>
+                            <p>Reset when filename changes</p>
+                            <p>Particularly useful when fixing duplicate filenames</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3>3. Position Settings</h3>
+                        <div class="example-block">
+                            <h4>Prefix</h4>
+                            <p>Add sequence at the start of filename</p>
+                            <code>file.txt → 001file.txt</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Suffix</h4>
+                            <p>Add sequence at the end of filename</p>
+                            <code>file.txt → file001.txt</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Specific Position</h4>
+                            <p>Insert at specific character position</p>
+                            <code>Position 4: myfile.txt → myf01ile.txt</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Replace</h4>
+                            <p>Replace entire filename with sequence</p>
+                            <code>file.txt → 001.txt</code>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3>4. Sequence Types</h3>
+                        <div class="example-block">
+                            <h4>Decimal Numbers</h4>
+                            <p>Starts from 0, increment by 1</p>
+                            <code>0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11...</code>
+                            <p>With zero padding(3): 000, 001, 002, 003...</p>
+                        </div>
+                        <div class="example-block">
+                            <h4>Alphabetic</h4>
+                            <p>Starts from 1, increment by 1, repeat count 1</p>
+                            <code>a, b, c, ..., z, ba, bb, bc, ..., bz, ca...</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Roman Numerals</h4>
+                            <p>Starts from 1, increment by 1, repeat count 1</p>
+                            <code>I, II, III, IV, V, VI, VII, VIII, IX, X...</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Chinese Numbers</h4>
+                            <p>Starts from 1, increment by 1, repeat count 1</p>
+                            <code>一, 二, 三, 四, 五, 六, 七, 八, 九, 十...</code>
+                        </div>
+                        <div class="example-block">
+                            <h4>Custom Sequence</h4>
+                            <p>Generate sequence using custom characters</p>
+                            <code>Using "ABC": A, B, C, BA, BB, BC...</code>
+                            <code>Using "01": 0, 1, 10, 11, 100, 101...</code>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="notes">
+                    <h2>Important Notes</h2>
+
+                    <div class="note-card">
+                        <h3>Sequence Type Behavior</h3>
+                        <ul>
+                            <li>Decimal: Starts from specified value (default 0 for custom numbers, 1 for others)</li>
+                            <li>Alphabetic: Generates a-z, then aa, ab, etc.</li>
+                            <li>Roman numerals: Supports numbers 1 to 3999, returns Arabic numerals beyond that</li>
+                            <li>Chinese numbers: Supports numbers 1 to 99999</li>
+                            <li>Custom: Generates using provided characters according to sequence rules</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Reset Handling</h3>
+                        <ul>
+                            <li>Reset interval takes precedence over other reset conditions</li>
+                            <li>Source change reset occurs when processing files in different folders</li>
+                            <li>Name change reset triggers when filename changes</li>
+                            <li>Reset returns counter to start value</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3>Zero Padding</h3>
+                        <ul>
+                            <li>Adds leading zeros to match specified length</li>
+                            <li>Not applicable to Chinese and Roman numeral sequences</li>
+                            <li>Only effective when number of digits is less than specified length</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>

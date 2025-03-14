@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Replace Rule</title>
+        <link rel="stylesheet" href="../../styles/main.css" />
+    </head>
+    <body>
+        <div class="container">
+            <main class="content">
+                <h2>Replace Rule</h2>
+                <p>The replace rule allows you to search for specific text patterns in filenames and replace them with new text. Here's a detailed usage guide.</p>
+
+                <section class="features">
+                    <h2>Feature Overview</h2>
+                    <ul>
+                        <li>Replace all occurrences of specified text</li>
+                        <li>Replace only the first occurrence of specified text</li>
+                        <li>Replace only the last occurrence of specified text</li>
+                        <li>Support case-sensitive matching</li>
+                        <li>Support whole word matching</li>
+                        <li>Support wildcard patterns with backreferences</li>
+                        <li>Support preserving file extensions during replacement</li>
+                        <li>Insert metadata tags</li>
+                    </ul>
+                </section>
+
+                <section class="usage">
+                    <h2>Usage Steps</h2>
+
+                    <div class="step">
+                        <h3>1. Configure Search and Replace</h3>
+                        <div class="example-block">
+                            <h4>Search Text</h4>
+                            <p>Enter the text pattern to find in filenames</p>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Replace Text</h4>
+                            <p>Enter the text to replace matching patterns</p>
+                            <p>When wildcards are enabled, you can use special patterns and backreferences:</p>
+                            <code>Search: file(*) Replace: document$1</code>
+                            <p>
+                                Will convert
+                                <code>file123.txt</code>
+                                to
+                                <code>document123.txt</code>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3>2. Choose Operation Type</h3>
+                        <div class="example-block">
+                            <h4>All</h4>
+                            <p>Replace every matching text</p>
+                            <code>old_file_old.txt → new_file_new.txt</code>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>First</h4>
+                            <p>Replace only the first occurrence of matching text</p>
+                            <code>old_file_old.txt → new_file_old.txt</code>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Last</h4>
+                            <p>Replace only the last occurrence of matching text</p>
+                            <code>old_file_old.txt → old_file_new.txt</code>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3>3. Configure Options</h3>
+                        <div class="example-block">
+                            <h4>Case Sensitive</h4>
+                            <p>When enabled, text matching will be case sensitive</p>
+                            <code>"File" will not match "file" in filenames when enabled</code>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Whole Word Only</h4>
+                            <p>When enabled, only matches complete word segments (disabled when using wildcards)</p>
+                            <code>my_file.txt → my_file.txt</code>
+                            (won't match "file")
+                            <code>my file name.txt</code>
+                            (will match "file")
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Ignore Extension</h4>
+                            <p>When enabled, replacement only affects the filename, keeping the extension unchanged</p>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Use Wildcards</h4>
+                            <p>When enabled, special characters are treated as wildcards, and $n as backreferences:</p>
+                            <ul>
+                                <li>
+                                    <code>?</code>
+                                    matches any single character
+                                </li>
+                                <li>
+                                    <code>*</code>
+                                    matches zero or more characters
+                                </li>
+                                <li>
+                                    <code>[]</code>
+                                    matches any character within brackets
+                                </li>
+                                <li>
+                                    <code>$1</code>
+                                    ,
+                                    <code>$2</code>
+                                    etc. reference captured groups in order
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="notes">
+                    <h2>Important Notes</h2>
+
+                    <div class="note-card">
+                        <h3>Wildcards and Backreferences</h3>
+                        <ul>
+                            <li>When using wildcards, you can use $1, $2 etc. in replacement text to reference captured groups</li>
+                            <li>Ensure wildcard patterns correctly capture the required text portions</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Extension Handling</h3>
+                        <ul>
+                            <li>When "Ignore Extension" is enabled, replacement won't affect file extensions</li>
+                            <li>Recommended to enable this option when extension modification is not needed</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Case Sensitivity</h3>
+                        <ul>
+                            <li>By default, text matching is case insensitive</li>
+                            <li>Enable "Case Sensitive" option when exact case matching is required</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Whole Word Matching</h3>
+                        <ul>
+                            <li>Whole word option prevents partial matches</li>
+                            <li>This option is not available when using wildcards</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Pattern Safety</h3>
+                        <ul>
+                            <li>When using wildcards and backreferences, test patterns on a small set of files first</li>
+                            <li>Ensure replacement results meet expectations before applying to many files</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>

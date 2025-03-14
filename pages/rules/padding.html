@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fill Rule</title>
+        <link rel="stylesheet" href="../../styles/main.css" />
+        <script src="../../styles/main.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <main class="content">
+                <h2>Fill Rule</h2>
+                <p>
+                    The fill rule allows you to pad filenames to a specific length using specified characters. This rule is particularly useful when you need to standardize filename lengths or add
+                    leading characters.
+                </p>
+
+                <section class="features">
+                    <h2>Feature Overview</h2>
+                    <ul>
+                        <li>Fill filenames with specified characters</li>
+                        <li>Support left and right padding</li>
+                        <li>Set target length</li>
+                        <li>Support ignoring extensions</li>
+                        <li>Support filling only numeric parts</li>
+                    </ul>
+                </section>
+
+                <section class="usage">
+                    <h2>Usage Steps</h2>
+
+                    <div class="example">
+                        <h4>1. Set Fill Parameters</h4>
+                        <div class="example-content">
+                            <div class="example-block">
+                                <h4>Fill Character</h4>
+                                <p>Choose the character for padding, common options:</p>
+                                <ul>
+                                    <li>Number 0: for numeric sequences</li>
+                                    <li>Custom characters</li>
+                                </ul>
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Target Length</h4>
+                                <p>Set the total length after filling</p>
+                                <code>1.jpg → 001.jpg</code>
+                                (Set length to 3, using 0 as fill character)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example">
+                        <h4>2. Choose Fill Mode</h4>
+                        <div class="example-content">
+                            <div class="example-block">
+                                <h4>Left Fill</h4>
+                                <p>Add fill characters "a" to the left side of filename, length 6</p>
+                                <code>99.jpg → aaaa99.jpg</code>
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Right Fill</h4>
+                                <p>Add fill characters "_" to the right side of filename, length 6</p>
+                                <code>file.jpg → file__.jpg</code>
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Zero Fill</h4>
+                                <p>Only fill numeric parts in filename, length 2</p>
+                                <code>photo5.jpg → photo05.jpg</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example">
+                        <h4>3. Configure Fill Options</h4>
+                        <div class="example-content">
+                            <div class="example-block">
+                                <h4>Ignore Extension</h4>
+                                <p>When enabled, fill length calculation excludes extension</p>
+                                <code>1.jpg → 001.jpg</code>
+                                (Length 3 excludes .jpg)
+                            </div>
+
+                            <div class="example-block">
+                                <h4>Keep Original Length</h4>
+                                <p>If filename already meets or exceeds target length, keep it unchanged</p>
+                                <code>1000.jpg → 1000.jpg</code>
+                                (Zero fill, length 4, already meets length 4, remains unchanged)
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="notes">
+                    <h2>Important Notes</h2>
+
+                    <div class="note-card">
+                        <h3>Length Calculation</h3>
+                        <ul>
+                            <li>Target length includes fill characters and original filename</li>
+                            <li>Extension length is not counted when "Ignore Extension" is enabled</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Fill Characters</h3>
+                        <ul>
+                            <li>Avoid characters that might make filenames invalid</li>
+                            <li>Consider file system restrictions on special characters</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>

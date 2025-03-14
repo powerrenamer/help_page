@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Remove Rule</title>
+        <link rel="stylesheet" href="../../styles/main.css" />
+    </head>
+    <body>
+        <div class="container">
+            <main class="content">
+                <h2>Remove Rule</h2>
+                <p>The remove rule allows you to remove specific text patterns from filenames. Here's a detailed usage guide.</p>
+
+                <section class="features">
+                    <h2>Feature Overview</h2>
+                    <ul>
+                        <li>Remove all occurrences of specified text</li>
+                        <li>Remove only the first occurrence of specified text</li>
+                        <li>Remove only the last occurrence of specified text</li>
+                        <li>Support case-sensitive matching</li>
+                        <li>Support whole word matching</li>
+                        <li>
+                            Support wildcard patterns using
+                            <code>?</code>
+                            ,
+                            <code>*</code>
+                            ,
+                            <code>[</code>
+                            and
+                            <code>]</code>
+                        </li>
+                        <li>Support ignoring extensions</li>
+                    </ul>
+                </section>
+
+                <section class="usage">
+                    <h2>Usage Steps</h2>
+
+                    <div class="step">
+                        <h3>1. Set Text to Remove</h3>
+                        <div class="example-block">
+                            <p>In the "Remove Text" section, enter the text you want to remove from filenames.</p>
+                            <ul>
+                                <li>
+                                    Example: To remove the text "copy" from
+                                    <code>document_copy.txt</code>
+                                    , enter "copy"
+                                </li>
+                                <li>When wildcards are enabled, you can use patterns like "copy*" to match "copy1", "copy2", etc.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3>2. Choose Operation Type</h3>
+                        <div class="example-block">
+                            <h4>Remove All</h4>
+                            <p>Remove every occurrence of the specified text</p>
+                            <code>copy_document_copy.txt → _document_.txt</code>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Remove First</h4>
+                            <p>Remove only the first occurrence of the specified text</p>
+                            <code>copy_document_copy.txt → _document_copy.txt</code>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Remove Last</h4>
+                            <p>Remove only the last occurrence of the specified text</p>
+                            <code>copy_document_copy.txt → copy_document_.txt</code>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3>3. Configure Additional Options</h3>
+                        <div class="example-block">
+                            <h4>Case Sensitive</h4>
+                            <p>When enabled, text matching will be case sensitive</p>
+                            <code>Removing "Copy" will not match "copy" in filenames</code>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Whole Word Only</h4>
+                            <p>When enabled, only matches complete word segments (disabled when using wildcards)</p>
+                            <code>my_copy my copy.txt → my_copy my .txt</code>
+                            (matches "copy", but not "my_copy")
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Ignore Extension</h4>
+                            <p>When enabled, removal only affects the filename, keeping the extension unchanged</p>
+                        </div>
+
+                        <div class="example-block">
+                            <h4>Use Wildcards</h4>
+                            <p>When enabled, special characters are treated as wildcards:</p>
+                            <ul>
+                                <li>
+                                    <code>?</code>
+                                    matches any single character
+                                </li>
+                                <li>
+                                    <code>*</code>
+                                    matches multiple characters
+                                </li>
+                                <li>
+                                    <code>[]</code>
+                                    matches any character within brackets, e.g.,
+                                    <code>[0-9], [a-z], [A-Z], [abc123]</code>
+                                    match any digit, lowercase letter, uppercase letter, or any character from "abc123"
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="notes">
+                    <h2>Important Notes</h2>
+
+                    <div class="note-card">
+                        <h3>Wildcard Usage</h3>
+                        <ul>
+                            <li>When wildcards are enabled, the whole word matching option is automatically disabled</li>
+                            <li>Be careful with wildcard patterns as they may match more text than expected</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Extension Handling</h3>
+                        <ul>
+                            <li>When "Ignore Extension" is enabled, removal won't affect file extensions</li>
+                            <li>Recommended to enable this option when extension modification is not needed</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Case Sensitivity</h3>
+                        <ul>
+                            <li>By default, text matching is case insensitive</li>
+                            <li>Enable "Case Sensitive" option when exact case matching is required</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-card">
+                        <h3>Whole Word Matching</h3>
+                        <ul>
+                            <li>Whole word option prevents partial matches</li>
+                            <li>This option is not available when using wildcards</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>

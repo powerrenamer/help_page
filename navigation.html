@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Documentation</title>
+    <style>
+        :root {
+            --text-color: #333333;
+            --text-secondary-color: #666666;
+            --background-color: #ffffff;
+            --surface-color: #ffffff;
+            --border-color: #e0e0e0;
+            --primary-color: #2196f3;
+            --primary-dark: #1976d2;
+            --primary-light: #bbdefb;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --drawer-background: #ffffff;
+            --drawer-text-color: #333333;
+            --drawer-selected-background: rgba(33, 150, 243, 0.1);
+            --drawer-selected-text-color: #2196f3;
+            --drawer-header-background: rgba(33, 150, 243, 0.1);
+            --drawer-header-text-color: #2196f3;
+            --drawer-divider-color: #e0e0e0;
+        }
+
+        [data-theme="dark"] {
+            --text-color: #e0e0e0;
+            --text-secondary-color: #a0a0a0;
+            --background-color: #121212;
+            --surface-color: #1e1e1e;
+            --border-color: #424242;
+            --primary-color: #90caf9;
+            --primary-dark: #90caf9;
+            --primary-light: #4dabf5;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --drawer-background: #1e1e1e;
+            --drawer-text-color: #e0e0e0;
+            --drawer-selected-background: rgba(33, 150, 243, 0.2);
+            --drawer-selected-text-color: #90caf9;
+            --drawer-header-background: rgba(33, 150, 243, 0.2);
+            --drawer-header-text-color: #90caf9;
+            --drawer-divider-color: #424242;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .side-nav {
+            position: relative;
+            width: 280px;
+            height: 100%;
+            background-color: var(--drawer-background);
+            box-shadow: 2px 0 8px var(--shadow-color);
+            z-index: 1000;
+            overflow-y: auto;
+            transition: transform 0.3s ease-in-out;
+            flex-shrink: 0;
+        }
+
+        .side-nav.collapsed {
+            transform: translateX(-280px);
+        }
+
+        .side-nav-header {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background-color: var(--drawer-header-background);
+            color: var(--drawer-header-text-color);
+            font-weight: bold;
+            border-bottom: 1px solid var(--drawer-divider-color);
+        }
+
+        .side-nav-icon {
+            margin-right: 12px;
+            font-size: 20px;
+        }
+
+        .side-nav-title {
+            font-size: 16px;
+        }
+
+        .side-nav-content {
+            padding: 8px 0;
+        }
+
+        .side-nav-section {
+            margin-bottom: 8px;
+        }
+
+        .side-nav-section-header {
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .side-nav-section-icon {
+            margin-right: 12px;
+            font-size: 16px;
+            color: var(--primary-color);
+            opacity: 0.7;
+        }
+
+        .side-nav-section-title {
+            flex: 1;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .side-nav-section-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .side-nav-section.expanded .side-nav-section-arrow {
+            transform: rotate(180deg);
+        }
+
+        .side-nav-section-items {
+            display: none;
+            padding-left: 16px;
+        }
+
+        .side-nav-section.expanded .side-nav-section-items {
+            display: block;
+        }
+
+        .side-nav-item {
+            padding: 8px 16px;
+            margin: 4px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--drawer-text-color);
+            transition: background-color 0.2s ease;
+        }
+
+        .side-nav-item:hover {
+            background-color: var(--drawer-selected-background);
+        }
+
+        .side-nav-item.active {
+            background-color: var(--drawer-selected-background);
+            color: var(--drawer-selected-text-color);
+            font-weight: 500;
+        }
+
+        .toggle-side-nav {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--surface-color);
+            box-shadow: 0 2px 4px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 999;
+            color: var(--text-color);
+            transition: left 0.3s ease-in-out;
+        }
+
+        .toggle-side-nav.shifted {
+            left: 296px;
+        }
+
+        .content-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            transition: margin-left 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .content-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: var(--background-color);
+        }
+
+        .loading-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        .loading-indicator.visible {
+            display: block;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 767px) {
+            .side-nav {
+                position: fixed;
+                transform: translateX(-280px);
+            }
+            
+            .side-nav.expanded {
+                transform: translateX(0);
+            }
+            
+            .toggle-side-nav.shifted {
+                left: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="side-nav" id="sideNav">
+        <div class="side-nav-header">
+            <span class="side-nav-icon">📚</span>
+            <span class="side-nav-title">Documentation</span>
+        </div>
+        <div class="side-nav-content">
+            <div class="side-nav-section expanded">
+                <div class="side-nav-section-header">
+                    <span class="side-nav-section-icon">🎓</span>
+                    <span class="side-nav-section-title">Basic Usage</span>
+                    <span class="side-nav-section-arrow">▼</span>
+                </div>
+                <div class="side-nav-section-items">
+                    <div class="side-nav-item" data-path="pages/basic/getting_started.html">Getting Started</div>
+                    <div class="side-nav-item" data-path="pages/basic/interface.html">Interface Guide</div>
+                </div>
+            </div>
+            <div class="side-nav-section">
+                <div class="side-nav-section-header">
+                    <span class="side-nav-section-icon">📏</span>
+                    <span class="side-nav-section-title">Renaming Rules</span>
+                    <span class="side-nav-section-arrow">▼</span>
+                </div>
+                <div class="side-nav-section-items">
+                    <div class="side-nav-item" data-path="pages/rules/insert.html">Insert</div>
+                    <div class="side-nav-item" data-path="pages/rules/delete.html">Delete</div>
+                    <div class="side-nav-item" data-path="pages/rules/remove.html">Remove</div>
+                    <div class="side-nav-item" data-path="pages/rules/replace.html">Replace</div>
+                    <div class="side-nav-item" data-path="pages/rules/extension.html">Extension</div>
+                    <div class="side-nav-item" data-path="pages/rules/strip.html">Strip</div>
+                    <div class="side-nav-item" data-path="pages/rules/case.html">Case</div>
+                    <div class="side-nav-item" data-path="pages/rules/serialize.html">Serialize</div>
+                    <div class="side-nav-item" data-path="pages/rules/clean.html">Clean</div>
+                    <div class="side-nav-item" data-path="pages/rules/padding.html">Padding</div>
+                    <div class="side-nav-item" data-path="pages/rules/regexp.html">RegExp</div>
+                    <div class="side-nav-item" data-path="pages/rules/wildcard.html">Wildcard</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="toggleSideNav" class="toggle-side-nav">☰</div>
+    
+    <div class="content-container" id="contentContainer">
+        <iframe id="contentFrame" class="content-frame" src="index.html"></iframe>
+        <div id="loadingIndicator" class="loading-indicator">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const sideNav = document.getElementById('sideNav');
+        const toggleBtn = document.getElementById('toggleSideNav');
+        const contentFrame = document.getElementById('contentFrame');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        
+        // Sidebar state
+        let isNavExpanded = true;
+        
+        // Current page path
+        let currentPath = 'index.html';
+        
+        // Toggle sidebar
+        function toggleSideNav() {
+            isNavExpanded = !isNavExpanded;
+            
+            if (window.innerWidth <= 767) {
+                // On mobile devices
+                if (isNavExpanded) {
+                    sideNav.classList.add('expanded');
+                } else {
+                    sideNav.classList.remove('expanded');
+                }
+            } else {
+                // On desktop devices
+                if (isNavExpanded) {
+                    sideNav.classList.remove('collapsed');
+                    toggleBtn.classList.add('shifted');
+                } else {
+                    sideNav.classList.add('collapsed');
+                    toggleBtn.classList.remove('shifted');
+                }
+            }
+            
+            // Notify Flutter
+            try {
+                window.flutter_inappwebview.callHandler('toggleDrawer', isNavExpanded);
+            } catch (e) {
+                console.log('Flutter handler not available');
+            }
+        }
+        
+        // Load page
+        function loadPage(path) {
+            if (path === currentPath) return;
+            
+            currentPath = path;
+            loadingIndicator.classList.add('visible');
+            
+            // Update iframe src
+            contentFrame.src = path;
+            
+            // Update active item
+            updateActiveItem(path);
+            
+            // Notify Flutter
+            try {
+                window.flutter_inappwebview.callHandler('navigateTo', path);
+            } catch (e) {
+                console.log('Flutter handler not available');
+            }
+        }
+        
+        // Update active item
+        function updateActiveItem(path) {
+            // Remove all active classes
+            document.querySelectorAll('.side-nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class to current item
+            const activeItem = document.querySelector(`.side-nav-item[data-path="${path}"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+                
+                // Expand section containing current item
+                const section = activeItem.closest('.side-nav-section');
+                if (section) {
+                    section.classList.add('expanded');
+                }
+            }
+        }
+        
+        // Theme switching function
+        function updateTheme(isDark) {
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        }
+        
+        // Event listeners
+        
+        // Sidebar toggle button
+        toggleBtn.addEventListener('click', toggleSideNav);
+        
+        // Section expand/collapse functionality
+        document.querySelectorAll('.side-nav-section-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const section = this.parentElement;
+                section.classList.toggle('expanded');
+            });
+        });
+        
+        // Page navigation functionality
+        document.querySelectorAll('.side-nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const path = this.getAttribute('data-path');
+                loadPage(path);
+            });
+        });
+        
+        // iframe load complete
+        contentFrame.addEventListener('load', function() {
+            loadingIndicator.classList.remove('visible');
+        });
+        
+        // Responsive design
+        window.addEventListener('resize', function() {
+            if (window.innerWidth <= 767) {
+                // Mobile device
+                sideNav.classList.remove('collapsed');
+                if (isNavExpanded) {
+                    sideNav.classList.add('expanded');
+                } else {
+                    sideNav.classList.remove('expanded');
+                }
+                toggleBtn.classList.remove('shifted');
+            } else {
+                // Desktop device
+                sideNav.classList.remove('expanded');
+                if (isNavExpanded) {
+                    sideNav.classList.remove('collapsed');
+                    toggleBtn.classList.add('shifted');
+                } else {
+                    sideNav.classList.add('collapsed');
+                    toggleBtn.classList.remove('shifted');
+                }
+            }
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial state
+            if (window.innerWidth <= 767) {
+                isNavExpanded = false;
+                sideNav.classList.remove('expanded');
+                toggleBtn.classList.remove('shifted');
+            } else {
+                isNavExpanded = true;
+                sideNav.classList.remove('collapsed');
+                toggleBtn.classList.add('shifted');
+            }
+            
+            // Initialize active item
+            updateActiveItem(currentPath);
+            
+            // Initialize theme
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            updateTheme(prefersDark);
+        });
+        
+        // Methods exposed to Flutter
+        window.loadHelpPage = function(path) {
+            loadPage(path);
+        };
+    </script>
+</body>
+</html> 

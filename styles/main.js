@@ -4,6 +4,7 @@ class DocUtils {
         DocUtils.setupNavigation();
         DocUtils.setupCodeBlocks();
         DocUtils.setupExamples();
+        DocUtils.setupTheme();
     }
 
     // Setup navigation interaction
@@ -54,6 +55,33 @@ class DocUtils {
                     content.style.display = isVisible ? 'none' : 'block';
                     header.classList.toggle('expanded', !isVisible);
                 });
+            }
+        });
+    }
+
+    // Setup theme
+    static setupTheme() {
+        // Check localStorage first
+        let savedTheme = localStorage.getItem('preferred-theme');
+        
+        // If no saved theme, check system preference
+        if (!savedTheme) {
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            savedTheme = prefersDark ? 'dark' : 'light';
+        }
+        
+        // Apply theme
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        
+        // Listen for messages from parent frame
+        window.addEventListener('message', (event) => {
+            if (event.data && event.data.type === 'themeChange') {
+                document.documentElement.setAttribute('data-theme', event.data.isDark ? 'dark' : 'light');
+                try {
+                    localStorage.setItem('preferred-theme', event.data.isDark ? 'dark' : 'light');
+                } catch (e) {
+                    console.warn('Failed to save theme preference:', e);
+                }
             }
         });
     }

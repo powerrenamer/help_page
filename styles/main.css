@@ -17,6 +17,24 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
+[data-theme="dark"] {
+    --primary-color: #90caf9;
+    --primary-dark: #64b5f6;
+    --primary-light: #4dabf5;
+    --text-color: #e0e0e0;
+    --text-secondary-color: #a0a0a0;
+    --background-color: #121212;
+    --surface-color: #1e1e1e;
+    --border-color: #424242;
+    --code-background: #2d2d2d;
+    --code-text-color: #ff6090;
+    --example-background: #2d2d2d;
+    --note-background: #4a3306;
+    --note-border-color: #ff9800;
+    --note-title-color: #ffb74d;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -26,10 +44,11 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: var(--text-color);
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: var(--background-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* 容器布局 */
@@ -37,8 +56,9 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--surface-color);
+    box-shadow: 0 0 10px var(--shadow-color);
+    transition: background-color 0.3s ease;
 }
 
 /* 主要内容区域 */
@@ -55,18 +75,19 @@ h5,
 h6 {
     margin-top: 1.5em;
     margin-bottom: 0.5em;
-    color: #2c3e50;
+    color: var(--primary-dark);
+    transition: color 0.3s ease;
 }
 
 h1 {
     font-size: 2.2em;
-    border-bottom: 2px solid #eaecef;
+    border-bottom: 2px solid var(--border-color);
     padding-bottom: 0.3em;
 }
 
 h2 {
     font-size: 1.8em;
-    border-bottom: 1px solid #eaecef;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.3em;
 }
 
@@ -83,12 +104,14 @@ h4 {
 /* 段落和列表样式 */
 p {
     margin: 1em 0;
+    color: var(--text-color);
 }
 
 ul,
 ol {
     margin: 1em 0;
     padding-left: 2em;
+    color: var(--text-color);
 }
 
 li {
@@ -98,18 +121,21 @@ li {
 /* 代码样式 */
 code {
     font-family: 'Courier New', Courier, monospace;
-    background-color: #f0f0f0;
+    background-color: var(--code-background);
+    color: var(--code-text-color);
     padding: 0.2em 0.4em;
     border-radius: 3px;
     font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 pre {
-    background-color: #f6f8fa;
+    background-color: var(--code-background);
     border-radius: 5px;
     padding: 1em;
     overflow: auto;
     position: relative;
+    transition: background-color 0.3s ease;
 }
 
 pre code {
@@ -127,6 +153,7 @@ pre code {
     margin: 1.5rem 0;
     border-radius: 0 8px 8px 0;
     box-shadow: 0 2px 4px var(--shadow-color);
+    transition: background-color 0.3s ease;
 }
 
 .example-block code {
@@ -145,6 +172,7 @@ pre code {
     background-color: var(--surface-color);
     border-radius: 8px;
     box-shadow: 0 2px 4px var(--shadow-color);
+    transition: background-color 0.3s ease;
 }
 
 /* 使用说明样式 */
@@ -154,6 +182,7 @@ pre code {
     border-radius: 8px;
     box-shadow: 0 2px 4px var(--shadow-color);
     margin: 1.5rem 0;
+    transition: background-color 0.3s ease;
 }
 
 .usage .step {
@@ -170,6 +199,7 @@ pre code {
     background-color: var(--code-background);
     border-radius: 4px;
     box-shadow: 0 1px 3px var(--shadow-color);
+    transition: background-color 0.3s ease;
 }
 
 /* 注意事项卡片样式 */
@@ -180,11 +210,13 @@ pre code {
     border-radius: 8px;
     border-left: 4px solid var(--note-border-color);
     box-shadow: 0 2px 4px var(--shadow-color);
+    transition: background-color 0.3s ease;
 }
 
 .note h3 {
     color: var(--note-title-color);
     margin-top: 0;
+    transition: color 0.3s ease;
 }
 
 /* 功能概述样式 */
@@ -194,6 +226,7 @@ pre code {
     border-radius: 8px;
     box-shadow: 0 2px 4px var(--shadow-color);
     margin: 2rem 0;
+    transition: background-color 0.3s ease;
 }
 
 .features ul {
@@ -226,7 +259,7 @@ pre code {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 .example-image .caption {
@@ -234,30 +267,34 @@ pre code {
     color: var(--text-secondary-color);
     font-size: 0.9em;
     font-style: italic;
+    transition: color 0.3s ease;
 }
 
 /* 新增图片容器样式 */
 .image-container {
     margin: 2em 0;
     text-align: center;
-    background-color: #f9f9f9;
+    background-color: var(--example-background);
     padding: 1em;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: background-color 0.3s ease;
 }
 
 .image-container img {
     max-width: 100%;
     height: auto;
     border-radius: 3px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
+    transition: border-color 0.3s ease;
 }
 
 .image-caption {
     margin-top: 0.5em;
-    color: #666;
+    color: var(--text-secondary-color);
     font-size: 0.9em;
     font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 /* 响应式设计 */
@@ -353,24 +390,27 @@ pre code {
 
 /* Information boxes */
 .description-box {
-    background-color: #f0f7ff;
-    border-left: 4px solid #3498db;
+    background-color: var(--primary-light);
+    border-left: 4px solid var(--primary-color);
     padding: 1em 1.5em;
     border-radius: 0 5px 5px 0;
     margin: 1em 0;
+    transition: background-color 0.3s ease;
 }
 
 .description-box h3 {
     margin-top: 0;
-    color: #3498db;
+    color: var(--primary-dark);
+    transition: color 0.3s ease;
 }
 
 .note-box {
-    background-color: #fffbea;
-    border-left: 4px solid #f1c40f;
+    background-color: var(--note-background);
+    border-left: 4px solid var(--note-border-color);
     padding: 1em 1.5em;
     border-radius: 0 5px 5px 0;
     margin: 1.5em 0;
+    transition: background-color 0.3s ease;
 }
 
 .note-box p {
@@ -378,5 +418,6 @@ pre code {
 }
 
 .note-box strong {
-    color: #d35400;
+    color: var(--note-title-color);
+    transition: color 0.3s ease;
 }

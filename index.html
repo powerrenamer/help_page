@@ -277,18 +277,42 @@
         .overlay.visible {
             display: block;
         }
+
+        .theme-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--surface-color);
+            box-shadow: 0 2px 4px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+            color: var(--text-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-icon {
+            /*font-size: 20px;*/
+            font-size: 1.2rem;
+            /*margin-right: 0.3rem;*/
+        }
     </style>
 </head>
 <body>
     <div class="side-nav" id="sideNav">
         <div class="side-nav-header">
-            <span class="side-nav-icon">📚</span>
+            <!--span class="side-nav-icon">📚</span-->
             <span class="side-nav-title">Documentation</span>
         </div>
         <div class="side-nav-content">
             <div class="side-nav-section expanded">
                 <div class="side-nav-section-header">
-                    <span class="side-nav-section-icon">🎓</span>
+                    <!--span class="side-nav-section-icon">🎓</span-->
                     <span class="side-nav-section-title">Basic Usage</span>
                     <span class="side-nav-section-arrow">▼</span>
                 </div>
@@ -299,7 +323,7 @@
             </div>
             <div class="side-nav-section">
                 <div class="side-nav-section-header">
-                    <span class="side-nav-section-icon">📏</span>
+                    <!--span class="side-nav-section-icon">📏</span-->
                     <span class="side-nav-section-title">Renaming Rules</span>
                     <span class="side-nav-section-arrow">▼</span>
                 </div>
@@ -325,6 +349,10 @@
     <div id="overlay" class="overlay"></div>
     
     <div class="content-container" id="contentContainer">
+        <div id="themeToggle" class="theme-toggle">
+            <span class="theme-icon light-icon">☀</span>
+            <span class="theme-icon dark-icon" style="display: none;">☾</span>
+        </div>
         <iframe id="contentFrame" class="content-frame" src="home.html"></iframe>
         <div id="loadingIndicator" class="loading-indicator">
             <div class="spinner"></div>
@@ -426,6 +454,41 @@
         // Theme switching function
         function updateTheme(isDark) {
             document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            try {
+                localStorage.setItem('preferred-theme', isDark ? 'dark' : 'light');
+            } catch (e) {
+                console.warn('Failed to save theme preference:', e);
+            }
+        }
+        
+        function updateThemeIcon(isDark) {
+            const lightIcon = document.querySelector('.light-icon');
+            const darkIcon = document.querySelector('.dark-icon');
+            
+            if (isDark) {
+                lightIcon.style.display = 'none';
+                darkIcon.style.display = 'inline-block';
+            } else {
+                lightIcon.style.display = 'inline-block';
+                darkIcon.style.display = 'none';
+            }
+        }
+        
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const isDark = currentTheme !== 'dark';
+            updateTheme(isDark);
+            updateThemeIcon(isDark);
+            
+            // Notify frame about theme change
+            try {
+                contentFrame.contentWindow.postMessage({
+                    type: 'themeChange',
+                    isDark: isDark
+                }, '*');
+            } catch (e) {
+                console.error('Failed to notify frame about theme change:', e);
+            }
         }
         
         // Event listeners
@@ -498,9 +561,18 @@
             updateActiveItem(currentPath);
             
             // Initialize theme
+            let savedTheme = localStorage.getItem('preferred-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            updateTheme(prefersDark);
+            if (!savedTheme) {
+                savedTheme = prefersDark ? 'dark' : 'light';
+            }
+            updateTheme(savedTheme === 'dark');
+            updateThemeIcon(savedTheme === 'dark');
         });
+        
+        // Theme toggle button
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', toggleTheme);
         
         // Methods exposed to Flutter
         window.loadHelpPage = function(path) {

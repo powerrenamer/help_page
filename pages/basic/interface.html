@@ -24,7 +24,7 @@
                                 <p class="image-caption">Toolbar with Main Function Buttons</p>
                             </div>
                             <ul>
-                                <li>Add Files: Select files to rename</li>
+                                <li>Add Files: Select files or folders to rename</li>
                                 <li>Add Rules: redirect to rules pages</li>
                                 <li>Rename: Execute the renaming operation</li>
                                 <li>Undo: Revert the last renaming operation (⚠️ only supports undoing the most recent rename operation)</li>
@@ -51,10 +51,10 @@
                                     </div>
                                     <ul>
                                         <li>Toggle Checkbox: disable/enable rules</li>
-                                        <li>Info Button: Display rule settings information</li>
-                                        <li>Settings Button: Navigate to rule configuration page</li>
-                                        <li>Delete Button: Remove rule</li>
-                                        <li>Drag Handle or Long Press: Adjust rule order</li>
+                                        <li>Info Button <img src="../../images/rule_info_icon.png" alt="Info Button" class="inline-icon" />: Display rule settings information</li>
+                                        <li>Settings Button <img src="../../images/rule_edit_icon.png" alt="Edit Button" class="inline-icon" />: Navigate to rule configuration page</li>
+                                        <li>Delete Button <img src="../../images/rule_delete_icon.png" alt="Delete Button" class="inline-icon" />: Remove rule</li>
+                                        <li>Drag Handle <img src="../../images/drag_handle.png" alt="Drag Handle" class="inline-icon" />: Adjust rule order</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -70,12 +70,53 @@
                                 <p class="image-caption">File List Overview</p>
                             </div>
                             <ul>
-                                <li>Original Filename: Shows the current filename</li>
-                                <li>New Filename: Shows preview after applying rules</li>
-                                <li>Info Button: Displays original filename, new filename, original path and status information</li>
-                                <li>Delete Button: Remove file from the list</li>
-                                <li>Checkbox: Select files for batch operations</li>
-                                <li>Long press on any checkbox to pop up a selection menu</li>
+                                <li>Display Modes: The file list adapts to your screen size with a responsive layout:
+                                    <ul>
+                                        <li>Table View (large screens): Displays files in a structured table format</li>
+                                        <li>Card View (small screens): Files appear as compact cards for mobile and narrow windows</li>
+                                    </ul>
+                                </li>
+                                <li>File Information:
+                                    <ul>
+                                        <li>Original Filename: Shows the current filename</li>
+                                        <li>New Filename: Shows preview after applying rules</li>
+                                        <li>Status: Displays validation or processing status information</li>
+                                    </ul>
+                                </li>
+                                <li>File Actions:
+                                    <ul>
+                                        <li>Info Button <img src="../../images/info_icon.png" alt="Info Icon" class="inline-icon" />: Displays detailed file information including original path and status</li>
+                                        <li>Edit Button <img src="../../images/edit_icon.png" alt="Edit Icon" class="inline-icon" />: Opens a dialog to directly edit the new filename</li>
+                                        <li>Delete Button <img src="../../images/delete_icon.png" alt="Delete Icon" class="inline-icon" />: Remove file from the list</li>
+                                        <li>Checkbox: Select files for batch operations</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Context Menu (Long Press):
+                                    <div class="image-container">
+                                        <img src="../../images/context_menu.png" alt="Context Menu Options" class="feature-image" />
+                                        <p class="image-caption">Context Menu on Long Press</p>
+                                    </div>
+                                    <ul>
+                                        <li>Long-press on any list item to open a context menu with multiple operations:</li>
+                                        <li>Selection Operations:
+                                            <ul>
+                                                <li>Select All: Select all files in the list</li>
+                                                <li>Invert Selection: Select unselected files and deselect selected files</li>
+                                            </ul>
+                                        </li>
+                                        <li>Clearing Operations:
+                                            <ul>
+                                                <li>Clear All: Remove all files from the list</li>
+                                                <li>Clear Invalid Items: Remove files with validation errors</li>
+                                                <li>Clear Rename Failed: Remove files that failed during rename</li>
+                                                <li>Clear Restore Failed: Remove files that failed during undo</li>
+                                                <li>Clear Renamed: Remove successfully renamed files</li>
+                                                <li>Clear Restored: Remove successfully restored files</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li>
                                     Sorting Functionality:
                                     <div class="image-container">
@@ -86,45 +127,6 @@
                                         <li>Filename: Sort by original filename (click to toggle ascending/descending)</li>
                                         <li>New Filename: Sort by renamed filename (click to toggle ascending/descending)</li>
                                         <li>Status: Sort by file status (click to toggle ascending/descending)</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Clear Menu:
-                                    <div class="image-container">
-                                        <img src="../../images/clear_menu.png" alt="Clear Menu Options" class="feature-image" />
-                                        <p class="image-caption">Clear Menu Options</p>
-                                    </div>
-                                    <ul>
-                                        <li>Click clear icon<img src="../../images/clear_icon.png" alt="Clear Icon" class="feature-image" /> to display the menu</li>
-                                        <li>Clear All: Remove all files from the list</li>
-                                        <li>Clear Invalid Items: Remove files with validation errors</li>
-                                        <li>Clear Rename Failed: Remove files that failed during rename</li>
-                                        <li>Clear Restore Failed: Remove files that failed during undo</li>
-                                        <li>Clear Renamed: Remove successfully renamed files</li>
-                                        <li>Clear Restored: Remove successfully restored files</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Selection Menu (long-press on any checkbox):
-                                    <div class="image-container">
-                                        <img src="../../images/selection_menu.png" alt="Selection Menu Options" class="feature-image" />
-                                        <p class="image-caption">Selection Menu Options</p>
-                                    </div>
-                                    <ul>
-                                        <li>Select All: Select all files in the list</li>
-                                        <li>Deselect All: Clear all selections</li>
-                                        <li>Invert Selection: Select unselected files and deselect selected files</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Individual Filename Editing:
-                                    <div class="image-container">
-                                        <img src="../../images/filename_edit.png" alt="Filename Edit" class="feature-image" />
-                                        <p class="image-caption">Individual Filename Editing</p>
-                                    </div>
-                                    <ul>
-                                        <li>Long-press on any file list item to enter individual filename editing mode</li>
-                                        <li>Directly edit the new filename in the text field that appears</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -159,6 +161,7 @@
                             </div>
                             <ul>
                                 <li>Preset Management: Save and load rule combinations</li>
+                                <li>File Selection Settings: Configure file selection options</li>
                                 <li>Language Settings: Switch interface language</li>
                                 <li>Help Documentation: Open this help system</li>
                                 <li>About: Display application information</li>
@@ -188,10 +191,6 @@
 
                     <div class="note-card">
                         <h3>Rule Management</h3>
-                        <div class="image-container">
-                            <img src="../../images/rule_management_tips.png" alt="Rule Management Tips" class="feature-image" />
-                            <p class="image-caption">Effective Rule Management Techniques</p>
-                        </div>
                         <ul>
                             <li>Use drag and drop to adjust rule order</li>
                             <li>Temporarily disable rules to test effects</li>

@@ -289,6 +289,30 @@ pre code {
     transition: border-color 0.3s ease;
 }
 
+/* 图标大小统一规则 - 添加这个新的样式 */
+img.feature-image[src*="_icon.png"] {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin: 0 4px;
+    object-fit: contain;
+    display: inline-block;
+}
+
+/* 专门设置 Rule Items 和 File Actions 的图标大小 */
+img.feature-image[src*="rule_delete_icon.png"],
+img.feature-image[src*="rule_edit_icon.png"],
+img.feature-image[src*="rule_info_icon.png"],
+img.feature-image[src*="delete_icon.png"],
+img.feature-image[src*="edit_icon.png"],
+img.feature-image[src*="info_icon.png"] {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin: 0 4px;
+    object-fit: contain;
+}
+
 .image-caption {
     margin-top: 0.5em;
     color: var(--text-secondary-color);

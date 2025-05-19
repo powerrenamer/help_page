@@ -1,38 +1,54 @@
 /* 全局样式 */
 :root {
-    --primary-color: #2196f3;
-    --primary-dark: #1976d2;
-    --primary-light: #bbdefb;
-    --text-color: #333333;
-    --text-secondary-color: #666666;
-    --background-color: #ffffff;
-    --surface-color: #ffffff;
-    --border-color: #e0e0e0;
-    --code-background: #f8f9fa;
-    --code-text-color: #e91e63;
-    --example-background: #fafafa;
-    --note-background: #fff3e0;
-    --note-border-color: #ff9800;
-    --note-title-color: #f57c00;
-    --shadow-color: rgba(0, 0, 0, 0.1);
+    --primary-color: #007aff; /* Apple Blue */
+    --primary-dark: #005bb5;
+    --primary-light: #66b3ff;
+    --text-color: #1d1d1f; /* Apple Text Black */
+    --text-secondary-color: #6e6e73; /* Apple Secondary Text */
+    --background-color: #f0f2f5; /* MODIFIED: New softer neutral gray */
+    --surface-color: #ffffff; /* Card Background */
+    --border-color: #d2d2d7;
+    --code-background: #f0f0f0; /* Can adjust if needed with new background */
+    --code-text-color: #d10000; /* Similar to Xcode's string color */
+    --example-background: #ffffff; /* Keep cards white */
+    --note-background: #fff9e6; /* Softer yellow for notes */
+    --note-border-color: #ffcc00; /* Apple Gold */
+    --note-title-color: #bf5700;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --sidebar-background: #f0f2f5; /* MODIFIED: New softer neutral gray for sidebar */
+    --sidebar-text-color: var(--text-color);
+    --sidebar-hover-background: rgba(0, 122, 255, 0.08);
+    --sidebar-active-background: rgba(0, 122, 255, 0.15);
+    --sidebar-active-text-color: var(--primary-color);
+    --sidebar-border-color: var(--border-color);
+    --sidebar-header-background: transparent; /* Cleaner look */
+    --sidebar-header-text-color: var(--primary-color);
 }
 
 [data-theme="dark"] {
-    --primary-color: #90caf9;
-    --primary-dark: #64b5f6;
-    --primary-light: #4dabf5;
-    --text-color: #e0e0e0;
-    --text-secondary-color: #a0a0a0;
-    --background-color: #121212;
-    --surface-color: #1e1e1e;
-    --border-color: #424242;
-    --code-background: #2d2d2d;
-    --code-text-color: #ff6090;
-    --example-background: #2d2d2d;
-    --note-background: #4a3306;
-    --note-border-color: #ff9800;
-    --note-title-color: #ffb74d;
-    --shadow-color: rgba(0, 0, 0, 0.5);
+    --primary-color: #0a84ff; /* Apple Blue Dark Mode */
+    --primary-dark: #339cff;
+    --primary-light: #0060c0;
+    --text-color: #f5f5f7; /* Apple Text White */
+    --text-secondary-color: #8e8e93; /* Apple Secondary Text Dark */
+    --background-color: #000000; /* True Black for OLED */
+    --surface-color: #1c1c1e; /* Card Background Dark */
+    --border-color: #38383a;
+    --code-background: #2c2c2e;
+    --code-text-color: #ff8080; /* Lighter red for dark mode */
+    --example-background: #1c1c1e;
+    --note-background: #3a3106; /* Darker, less saturated yellow */
+    --note-border-color: #ffd60a; /* Apple Gold Dark */
+    --note-title-color: #ffcc33;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --sidebar-background: #1c1c1e;
+    --sidebar-text-color: var(--text-color);
+    --sidebar-hover-background: rgba(10, 132, 255, 0.15);
+    --sidebar-active-background: rgba(10, 132, 255, 0.25);
+    --sidebar-active-text-color: var(--primary-color);
+    --sidebar-border-color: var(--border-color);
+    --sidebar-header-background: transparent;
+    --sidebar-header-text-color: var(--primary-color);
 }
 
 * {
@@ -42,100 +58,288 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.65;
     color: var(--text-color);
     margin: 0;
     padding: 0;
     background-color: var(--background-color);
     transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* 容器布局 */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+/* Sidebar Navigation */
+.side-nav {
+    width: 260px; /* Slightly narrower */
+    height: 100%;
+    background-color: var(--sidebar-background);
+    border-right: 1px solid var(--sidebar-border-color);
+    box-shadow: 1px 0 5px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    flex-shrink: 0;
+    z-index: 1000; /* Ensure sidebar is on top */
+}
+
+.side-nav-header {
+    display: flex;
+    align-items: center;
+    padding: 18px 20px; /* Increased padding */
+    background-color: var(--sidebar-header-background);
+    color: var(--sidebar-header-text-color);
+    font-weight: 600; /* SF Pro uses 600 for semibold */
+    border-bottom: 1px solid var(--sidebar-border-color);
+    min-height: 60px; /* Consistent height */
+}
+
+.side-nav-icon { /* This class was in index.html, styling it here */
+    margin-right: 12px;
+    font-size: 20px; /* Ensure it's visible */
+    color: var(--primary-color);
+}
+
+.side-nav-title { /* This class was in index.html, styling it here */
+    font-size: 17px; /* Slightly larger */
+    letter-spacing: 0.5px;
+}
+
+.side-nav-content {
+    flex-grow: 1;
+    padding: 12px 0; /* Vertical padding */
+    overflow-y: auto;
+}
+
+.side-nav-section {
+    margin-bottom: 8px;
+}
+
+.side-nav-section-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px; /* Consistent padding */
+    cursor: pointer;
+    user-select: none;
+    color: var(--sidebar-text-color);
+    transition: background-color 0.2s ease;
+}
+
+.side-nav-section-header:hover {
+    background-color: var(--sidebar-hover-background);
+}
+
+.side-nav-section-icon { /* This class was in index.html, styling it here */
+    margin-right: 10px;
+    font-size: 16px;
+    color: var(--text-secondary-color); /* Subtler color */
+    width: 20px; /* Ensure alignment */
+    text-align: center;
+}
+
+.side-nav-section-title { /* This class was in index.html, styling it here */
+    flex: 1;
+    font-weight: 500; /* Medium weight */
+    font-size: 15px;
+    color: var(--text-color);
+}
+
+.side-nav-section-arrow { /* This class was in index.html, styling it here */
+    font-size: 12px;
+    transition: transform 0.2s ease;
+    color: var(--text-secondary-color);
+    transform: rotate(0deg); /* Explicitly set default state: collapsed */
+}
+
+.side-nav-section.expanded .side-nav-section-arrow {
+    transform: rotate(90deg); /* Expanded state */
+}
+
+.side-nav-section-items {
+    display: none; /* Explicitly set default state: items hidden (collapsed) */
+    padding-left: 20px; /* Indent items */
+    /* For smooth animation, you might use max-height and overflow:hidden a bit later */
+    /* max-height: 0; */
+    /* overflow: hidden; */
+    /* transition: max-height 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out; */
+}
+
+.side-nav-section.expanded .side-nav-section-items {
+    display: block; /* Expanded state: items shown */
+    /* max-height: 500px; */ /* Adjust as needed for animation */
+}
+
+.side-nav-item {
+    display: block; /* Ensure it takes full width for padding */
+    padding: 10px 20px 10px 30px; /* More padding, deeper indent for items */
+    margin: 2px 8px; /* Vertical margin, horizontal for rounded corners */
+    border-radius: 6px; /* Softer rounded corners */
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--sidebar-text-color);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    text-decoration: none; /* Remove underline from potential <a> tags */
+}
+
+.side-nav-item:hover {
+    background-color: var(--sidebar-hover-background);
+    color: var(--sidebar-active-text-color);
+}
+
+.side-nav-item.active {
+    background-color: var(--sidebar-active-background);
+    color: var(--sidebar-active-text-color);
+    font-weight: 500; /* Medium weight for active item */
+}
+
+/* Toggle button for sidebar - assuming it's controlled by JS */
+.toggle-side-nav {
+    position: fixed; /* Or absolute if relative to a container */
+    top: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     background-color: var(--surface-color);
-    box-shadow: 0 0 10px var(--shadow-color);
-    transition: background-color 0.3s ease;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px; /* Adjust as needed */
+    cursor: pointer;
+    z-index: 1002; /* Above sidebar if it overlaps */
+    color: var(--text-color);
+    transition: left 0.3s ease-in-out, background-color 0.3s ease, color 0.3s ease;
+}
+.toggle-side-nav.shifted { /* This class was in index.html */
+    left: calc(260px + 15px); /* Adjust if sidebar width changes */
 }
 
-/* 主要内容区域 */
-.content {
-    padding: 2rem 0;
+
+/* Main Content Area */
+.content-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0; /* Remove padding, iframe will handle it */
+    transition: margin-left 0.3s ease-in-out;
+    background-color: var(--background-color); /* Ensure bg color */
+    position: relative; /* For potential loading indicators */
 }
 
-/* 标题样式 */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-    color: var(--primary-dark);
-    transition: color 0.3s ease;
+.content-frame { /* Styles for the iframe */
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: var(--background-color); /* Match parent */
+}
+
+/* Styles for content within the iframe (pages/*.html) */
+/* These styles will be applied if pages link this main.css */
+/* Or if similar styles are in their own CSS */
+.content { /* Assuming .content is the main wrapper in loaded pages */
+    max-width: 900px; /* Optimal reading width */
+    margin: 0 auto;
+    padding: 2rem 2.5rem; /* Generous padding */
+}
+
+/* Add this new rule */
+.content > h1:first-child,
+.content > h2:first-child,
+.content > h3:first-child,
+.content > h4:first-child,
+.content > h5:first-child,
+.content > h6:first-child {
+    margin-top: 0; /* Remove top margin for the first heading in .content */
+}
+
+/* General HTML elements styling for content pages */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 2em;
+    margin-bottom: 0.8em;
+    color: var(--text-color); /* Use main text color for headers for better contrast */
+    font-weight: 600; /* Semibold for titles */
+    line-height: 1.3;
 }
 
 h1 {
-    font-size: 2.2em;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 0.3em;
+    font-size: 2.4em; /* Larger H1 */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.4em;
+    color: var(--text-color); /* Ensure h1 uses the primary text color */
 }
 
 h2 {
-    font-size: 1.8em;
+    font-size: 1.9em;
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.3em;
+    padding-bottom: 0.4em;
+    margin-top: 2.5em;
 }
 
 h3 {
     font-size: 1.5em;
+    margin-top: 2.2em;
 }
 
 h4 {
-    font-size: 1.2rem;
-    color: var(--text-color);
-    margin: 1rem 0;
+    font-size: 1.25em;
+    color: var(--text-secondary-color);
+    margin-top: 2em;
+    font-weight: 500;
 }
 
-/* 段落和列表样式 */
 p {
-    margin: 1em 0;
+    margin: 1.2em 0;
     color: var(--text-color);
+    font-size: 1em; /* Standard P size */
+    line-height: 1.7; /* Improved line height for readability */
 }
 
-ul,
-ol {
-    margin: 1em 0;
-    padding-left: 2em;
+ul, ol {
+    margin: 1.2em 0;
+    padding-left: 1.8em; /* Slightly less indent */
     color: var(--text-color);
 }
 
 li {
-    margin: 0.5em 0;
+    margin: 0.6em 0;
+    padding-left: 0.4em; /* Space after bullet */
 }
 
-/* 代码样式 */
+ul li::marker { /* Modern way to style bullets */
+    color: var(--primary-color);
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+ol li::marker {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* Code样式 */
 code {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "SF Mono", "Menlo", "Consolas", "Courier New", monospace;
     background-color: var(--code-background);
     color: var(--code-text-color);
-    padding: 0.2em 0.4em;
-    border-radius: 3px;
+    padding: 0.25em 0.5em; /* Slightly more padding */
+    border-radius: 6px; /* Softer radius */
     font-size: 0.9em;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 1px solid var(--border-color); /* Subtle border */
 }
 
 pre {
     background-color: var(--code-background);
-    border-radius: 5px;
-    padding: 1em;
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Consistent radius */
+    padding: 1.2em; /* More padding */
     overflow: auto;
     position: relative;
-    transition: background-color 0.3s ease;
+    margin: 1.5em 0;
+    box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 pre code {
@@ -143,90 +347,108 @@ pre code {
     padding: 0;
     font-size: 0.9em;
     display: block;
+    border: none; /* Remove double border */
+    color: var(--code-text-color); /* Ensure pre code color is set */
 }
 
 /* 示例块样式 */
 .example-block {
-    background-color: var(--example-background);
-    border-left: 4px solid var(--primary-color);
+    background-color: var(--surface-color); /* Use surface for cards */
+    border-left: 3px solid var(--primary-color);
     padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-radius: 0 8px 8px 0;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    transition: background-color 0.3s ease;
+    margin: 2rem 0; /* More vertical space */
+    border-radius: 8px; /* Consistent radius */
+    box-shadow: 0 3px 6px var(--shadow-color);
+    border: 1px solid var(--border-color); /* Add border */
 }
 
-.example-block code {
+.example-block h3, .example-block h4 { /* Titles inside example block */
+    margin-top: 0;
+    color: var(--primary-dark);
+}
+
+.example-block code { /* Code inside example block */
     display: block;
-    margin: 0.5rem 0;
-    padding: 1rem;
-    background-color: var(--surface-color);
-    border-radius: 4px;
-    box-shadow: 0 1px 3px var(--shadow-color);
+    margin: 0.8rem 0;
+    padding: 0.8rem 1rem;
+    background-color: var(--code-background); /* Use code bg */
+    border-radius: 6px;
+    box-shadow: none; /* Remove redundant shadow */
+    border: 1px solid var(--border-color);
 }
 
 /* 步骤样式 */
 .step {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background-color: var(--surface-color);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    transition: background-color 0.3s ease;
+    margin-bottom: 2.5rem;
+    padding: 0; /* Remove padding if example-block is used inside */
+    background-color: transparent; /* Make it a logical group, not visual */
+    border-radius: 0;
+    box-shadow: none;
+}
+.step > h3 { /* Title for a step */
+     border-bottom: 1px dashed var(--border-color);
+     padding-bottom: 0.5em;
+     margin-bottom: 1em;
 }
 
-/* 使用说明样式 */
+
+/* 使用说明样式 - often contains steps or example blocks */
 .usage {
-    background-color: var(--surface-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    margin: 1.5rem 0;
-    transition: background-color 0.3s ease;
+    background-color: transparent; /* Logical grouping */
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 2rem 0;
 }
 
 .usage .step {
-    background-color: transparent;
-    box-shadow: none;
-    padding: 0;
     margin-bottom: 2rem;
 }
 
-.usage code {
-    display: block;
-    margin: 0.5rem 0;
-    padding: 1rem;
-    background-color: var(--code-background);
-    border-radius: 4px;
-    box-shadow: 0 1px 3px var(--shadow-color);
-    transition: background-color 0.3s ease;
+.usage code { /* Code inside general usage section */
+    display: inline-block; /* Better for inline code snippets if not in pre */
+    margin: 0.2rem 0;
+    padding: 0.25em 0.5em;
 }
 
 /* 注意事项卡片样式 */
-.note {
+.note, .note-card, .warning { /* Consolidate note-like blocks */
     background-color: var(--note-background);
     padding: 1.5rem;
-    margin: 1.5rem 0;
+    margin: 2rem 0;
     border-radius: 8px;
     border-left: 4px solid var(--note-border-color);
-    box-shadow: 0 2px 4px var(--shadow-color);
-    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    border: 1px solid var(--note-border-color); /* Use note border color for main border too */
 }
 
-.note h3 {
+.note h3, .note-card h3, .warning h3 {
     color: var(--note-title-color);
     margin-top: 0;
-    transition: color 0.3s ease;
+    font-size: 1.2em; /* Slightly smaller for note titles */
+    font-weight: 600;
 }
+.note p, .note-card p, .warning p,
+.note ul, .note-card ul, .warning ul {
+    color: var(--text-secondary-color); /* Softer text for notes */
+}
+.note ul li::marker, .note-card ul li::marker, .warning ul li::marker {
+    color: var(--note-title-color);
+}
+
 
 /* 功能概述样式 */
 .features {
     background-color: var(--surface-color);
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    margin: 2rem 0;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 3px 6px var(--shadow-color);
+    margin: 2.5rem 0;
+    border: 1px solid var(--border-color);
+}
+.features h2 { /* Assuming a title for the features section */
+    margin-top:0;
+    border-bottom: none; /* Remove border if it's just a card title */
 }
 
 .features ul {
@@ -235,189 +457,226 @@ pre code {
 }
 
 .features li {
-    padding-left: 1.5rem;
+    padding-left: 2em; /* More space for icon */
     position: relative;
     margin-bottom: 0.8rem;
+    font-size: 1.05em; /* Slightly larger feature text */
 }
 
 .features li::before {
-    content: '•';
+    content: '✓'; /* Checkmark for features */
     color: var(--primary-color);
-    font-size: 1.5em;
+    font-size: 1.2em;
     position: absolute;
     left: 0;
-    top: -0.2rem;
+    top: 0.1em; /* Adjust vertical alignment */
+    font-weight: bold;
 }
 
-/* 图片容器和图片样式 */
-.example-image {
-    margin: 1.5rem 0;
-    text-align: center;
+/* Rules overview cards (from pages/rules/index.html) */
+.rules-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 2rem 0;
 }
 
-.example-image img {
-    max-width: 100%;
-    height: auto;
+.rule-card {
+    background-color: var(--surface-color);
     border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-}
-
-.example-image .caption {
-    margin-top: 0.5rem;
-    color: var(--text-secondary-color);
-    font-size: 0.9em;
-    font-style: italic;
-    transition: color 0.3s ease;
-}
-
-/* 新增图片容器样式 */
-.image-container {
-    margin: 2em 0;
-    text-align: center;
-    background-color: var(--example-background);
-    padding: 1em;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px var(--shadow-color);
-    transition: background-color 0.3s ease;
-}
-
-.image-container img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 3px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     border: 1px solid var(--border-color);
-    transition: border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
-.image-caption {
-    margin-top: 0.5em;
+.rule-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px var(--shadow-color);
+}
+
+.rule-card h2 { /* Title inside rule card */
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    border-bottom: none; /* Remove default h2 border */
+    color: var(--primary-dark);
+}
+
+.rule-card p {
+    font-size: 0.95em;
     color: var(--text-secondary-color);
-    font-size: 0.9em;
+    flex-grow: 1; /* Make p take available space */
+    margin-bottom: 1rem;
+}
+
+.rule-card a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--primary-color);
     font-weight: 500;
-    transition: color 0.3s ease;
+    padding: 0.5em 0; /* Easier to click */
+    align-self: flex-start; /* Align link to the start */
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 1rem;
+.rule-card a:hover {
+    text-decoration: underline;
+    color: var(--primary-dark);
+}
+
+
+/* Responsive Design */
+@media (max-width: 767px) { /* Mobile specific styles */
+    body {
+        overflow-y: auto; /* Allow body to scroll on mobile if content overflows, this can remain as a general mobile fallback */
+    }
+    .side-nav {
+        position: fixed; /* Keep fixed positioning for mobile */
+        transform: translateX(-100%); /* Hide by default */
+        box-shadow: 2px 0 10px var(--shadow-color); /* More prominent shadow when open */
     }
 
-    .content {
-        padding: 1rem 0;
+    .side-nav.expanded { /* This class should be toggled by JS */
+        transform: translateX(0);
+    }
+    
+    .toggle-side-nav { /* Ensure toggle is visible */
+        display: flex; 
+    }
+    .toggle-side-nav.shifted {
+        left: calc(260px + 10px); /* Adjust based on sidebar width and desired gap */
     }
 
-    h1 {
-        font-size: 2rem;
+    .content-container {
+        /* margin-left: 0; /* Content takes full width when sidebar is hidden */
+        /* padding: 1rem; */ /* Reduced padding for mobile */
+    }
+    .content-container.sidebar-expanded { /* When sidebar is open on mobile, push content (optional) */
+        /* margin-left: 260px; */ /* Or use an overlay approach */
     }
 
-    h2 {
-        font-size: 1.75rem;
+    .content { /* Content within iframe on mobile */
+        padding: 1.5rem 1rem; /* Less padding on mobile */
     }
 
-    h3 {
-        font-size: 1.25rem;
-    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.7em; }
+    h3 { font-size: 1.4em; }
+    h4 { font-size: 1.15em; }
 
-    .example-image {
-        margin: 1rem 0;
-    }
-
-    .example-image img {
-        border-radius: 4px;
-    }
-
-    .half-width {
-        flex: 0 0 100%;
-        margin: 10px 0;
+    .rules-overview {
+        grid-template-columns: 1fr; /* Single column for cards on mobile */
     }
 }
 
-/* 打印样式 */
+@media (min-width: 768px) { /* Desktop specific styles for sidebar interaction */
+    .side-nav.collapsed { /* If you implement a collapse feature on desktop */
+        width: 60px; /* Example collapsed width */
+        /* overflow: hidden; */ /* Hide text, show icons only */
+    }
+    .side-nav.collapsed .side-nav-title,
+    .side-nav.collapsed .side-nav-section-title,
+    .side-nav.collapsed .side-nav-section-arrow {
+        /* display: none; */ /* Hide text elements when collapsed */
+    }
+    .side-nav.collapsed .side-nav-section-header,
+    .side-nav.collapsed .side-nav-item {
+        /* justify-content: center; */ /* Center icons */
+    }
+    .side-nav.collapsed .side-nav-section-items {
+        /* display: none !important; */ /* Ensure items are hidden when section is collapsed */
+    }
+
+    .content-container.sidebar-collapsed { /* Adjust content margin if sidebar collapses */
+        /* margin-left: 60px; */ /* Match collapsed sidebar width */
+    }
+     .toggle-side-nav { /* Hide toggle on larger screens if sidebar is always visible or has other toggle mechanism */
+        /* display: none; */
+    }
+}
+
+
+/* Print styles */
 @media print {
-    .container {
-        max-width: none;
-        padding: 0;
-        margin: 0;
+    body {
+        display: block; /* Normal flow for printing */
+        height: auto;
+        overflow: visible;
+        background-color: #fff !important; /* Ensure white background for print */
+        color: #000 !important; /* Ensure black text for print */
     }
-
+    .side-nav, .toggle-side-nav {
+        display: none !important; /* Hide sidebar and toggle for print */
+    }
+    .content-container {
+        width: 100%;
+        margin-left: 0 !important;
+        padding: 0;
+        overflow: visible;
+    }
     .content {
-        padding: 0;
-    }
-
-    .example-block,
-    .note,
-    .features {
-        break-inside: avoid;
+        max-width: none;
+        padding: 1cm; /* Print margins */
         box-shadow: none;
     }
-}
-
-/* Content layout */
-.content-row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 2em -10px;
-    justify-content: space-between;
-}
-
-.half-width {
-    flex: 0 0 calc(50% - 20px);
-    margin: 0 10px;
-}
-
-.content-section {
-    margin: 2em 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    align-items: flex-start;
-}
-
-.content-section .image-container {
-    flex: 0 0 100%;
-}
-
-@media (min-width: 768px) {
-    .content-section .image-container {
-        flex: 0 0 calc(50% - 10px);
+    h1, h2, h3, h4, h5, h6 {
+        color: #000 !important;
+        border-color: #ccc !important;
+    }
+    code, pre {
+        background-color: #f0f0f0 !important;
+        color: #333 !important;
+        border: 1px solid #ccc !important;
+    }
+    .example-block, .note, .note-card, .warning, .features, .rule-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        background-color: #f9f9f9 !important;
+    }
+    .rule-card a {
+        color: var(--primary-dark) !important;
+        text-decoration: none !important; /* Avoid underline for cleaner print */
+    }
+    ul li::marker, ol li::marker {
+        color: #333 !important;
+    }
+    .features li::before {
+        color: #333 !important;
     }
 
-    .content-section .description-box {
-        flex: 0 0 calc(50% - 10px);
-    }
 }
 
-/* Information boxes */
-.description-box {
-    background-color: var(--primary-light);
-    border-left: 4px solid var(--primary-color);
-    padding: 1em 1.5em;
-    border-radius: 0 5px 5px 0;
-    margin: 1em 0;
-    transition: background-color 0.3s ease;
+/* Scrollbar Styles (Webkit) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-.description-box h3 {
-    margin-top: 0;
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 10px;
+    border: 2px solid var(--background-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-secondary-color);
+}
+
+/* General Link Styling (if not covered by specific components) */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
     color: var(--primary-dark);
-    transition: color 0.3s ease;
-}
-
-.note-box {
-    background-color: var(--note-background);
-    border-left: 4px solid var(--note-border-color);
-    padding: 1em 1.5em;
-    border-radius: 0 5px 5px 0;
-    margin: 1.5em 0;
-    transition: background-color 0.3s ease;
-}
-
-.note-box p {
-    margin: 0.5em 0;
-}
-
-.note-box strong {
-    color: var(--note-title-color);
-    transition: color 0.3s ease;
+    text-decoration: underline;
 }

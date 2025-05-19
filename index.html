@@ -6,49 +6,56 @@
     <title>Help Documentation</title>
     <style>
         :root {
-            --text-color: #333333;
-            --text-secondary-color: #666666;
-            --background-color: #ffffff;
-            --surface-color: #ffffff;
-            --border-color: #e0e0e0;
-            --primary-color: #2196f3;
-            --primary-dark: #1976d2;
-            --primary-light: #bbdefb;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --drawer-background: #ffffff;
-            --drawer-text-color: #333333;
-            --drawer-selected-background: rgba(33, 150, 243, 0.1);
-            --drawer-selected-text-color: #2196f3;
-            --drawer-header-background: rgba(33, 150, 243, 0.1);
-            --drawer-header-text-color: #2196f3;
-            --drawer-divider-color: #e0e0e0;
+            --text-color: #333333; /* Will be overridden by main.css if linked */
+            --text-secondary-color: #666666; /* Will be overridden by main.css if linked */
+            --background-color: #f0f2f5; /* MODIFIED: New softer neutral gray */
+            --sidebar-background: #f0f2f5; /* MODIFIED: New softer neutral gray for sidebar */
+            --surface-color: #ffffff; /* Will be overridden by main.css if linked */
+            --border-color: #e0e0e0; /* Will be overridden by main.css if linked */
+            --primary-color: #2196f3; /* Will be overridden by main.css if linked */
+            --primary-dark: #1976d2; /* Will be overridden by main.css if linked */
+            --primary-light: #bbdefb; /* Will be overridden by main.css if linked */
+            --shadow-color: rgba(0, 0, 0, 0.1); /* Will be overridden by main.css if linked */
+            /* --drawer-background: #ffffff; */ /* Commented out: Sidebar bg now controlled by --sidebar-background in main.css */
+            --drawer-text-color: #333333; /* Consider moving to main.css if consistently used */
+            --drawer-selected-background: rgba(33, 150, 243, 0.1); /* Consider moving to main.css */
+            --drawer-selected-text-color: #2196f3; /* Consider moving to main.css */
+            --drawer-header-background: rgba(33, 150, 243, 0.1); /* Consider moving to main.css */
+            --drawer-header-text-color: #2196f3; /* Consider moving to main.css */
+            --drawer-divider-color: #e0e0e0; /* Consider moving to main.css */
         }
 
         [data-theme="dark"] {
-            --text-color: #e0e0e0;
-            --text-secondary-color: #a0a0a0;
-            --background-color: #121212;
-            --surface-color: #1e1e1e;
-            --border-color: #424242;
-            --primary-color: #90caf9;
-            --primary-dark: #90caf9;
-            --primary-light: #4dabf5;
-            --shadow-color: rgba(0, 0, 0, 0.5);
-            --drawer-background: #1e1e1e;
-            --drawer-text-color: #e0e0e0;
-            --drawer-selected-background: rgba(33, 150, 243, 0.2);
-            --drawer-selected-text-color: #90caf9;
-            --drawer-header-background: rgba(33, 150, 243, 0.2);
-            --drawer-header-text-color: #90caf9;
-            --drawer-divider-color: #424242;
+            --text-color: #e0e0e0; /* Will be overridden by main.css if linked */
+            --text-secondary-color: #a0a0a0; /* Will be overridden by main.css if linked */
+            --background-color: #000000; /* MODIFIED: Applied dark background directly here for index.html body */
+            --sidebar-background: #000000; /* ADDED: Defining sidebar background for index.html dark mode (same as main bg) */
+            --surface-color: #1e1e1e; /* Will be overridden by main.css if linked */
+            --border-color: #424242; /* Will be overridden by main.css if linked */
+            --primary-color: #90caf9; /* Will be overridden by main.css if linked */
+            --primary-dark: #90caf9; /* Will be overridden by main.css if linked */
+            --primary-light: #4dabf5; /* Will be overridden by main.css if linked */
+            --shadow-color: rgba(0, 0, 0, 0.5); /* Will be overridden by main.css if linked */
+            /* --drawer-background: #1e1e1e; */ /* Commented out: Sidebar bg now controlled by --sidebar-background in main.css */
+            --drawer-text-color: #e0e0e0; /* Consider moving to main.css */
+            --drawer-selected-background: rgba(33, 150, 243, 0.2); /* Consider moving to main.css */
+            --drawer-selected-text-color: #90caf9; /* Consider moving to main.css */
+            --drawer-header-background: rgba(33, 150, 243, 0.2); /* Consider moving to main.css */
+            --drawer-header-text-color: #90caf9; /* Consider moving to main.css */
+            --drawer-divider-color: #424242; /* Consider moving to main.css */
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            /* background-color is now controlled by main.css for iframe content, 
+               but index.html body still needs its own --background-color from here if not overridden by a more specific rule for the host page itself.
+               For the main index.html page's body, its background is effectively the browser default or what main.css defines for body,
+               which is --background-color.
+            */
+            background-color: var(--background-color); /* This will use the host page's :root or [data-theme='dark'] definition */
+            color: var(--text-color); /* Same as above */
             display: flex;
             height: 100vh;
             overflow: hidden;
@@ -56,13 +63,13 @@
 
         .side-nav {
             position: relative;
-            width: 280px;
+            width: 280px; /* This might be overridden by main.css if a rule there targets .side-nav directly */
             height: 100%;
-            background-color: var(--drawer-background);
-            box-shadow: 2px 0 8px var(--shadow-color);
+            background-color: var(--sidebar-background); /* MODIFIED: Using --sidebar-background from main.css */
+            box-shadow: 2px 0 8px var(--shadow-color); /* --shadow-color from here, or main.css if defined there and this is overridden */
             z-index: 1000;
             overflow-y: auto;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out; /* This specific transition can stay or be moved to main.css */
             flex-shrink: 0;
         }
 
@@ -310,17 +317,6 @@
             <span class="side-nav-title">Documentation</span>
         </div>
         <div class="side-nav-content">
-            <div class="side-nav-section expanded">
-                <div class="side-nav-section-header">
-                    <!--span class="side-nav-section-icon">🎓</span-->
-                    <span class="side-nav-section-title">Basic Usage</span>
-                    <span class="side-nav-section-arrow">▼</span>
-                </div>
-                <div class="side-nav-section-items">
-                    <div class="side-nav-item" data-path="pages/basic/getting_started.html">Getting Started</div>
-                    <div class="side-nav-item" data-path="pages/basic/interface.html">Interface Guide</div>
-                </div>
-            </div>
             <div class="side-nav-section">
                 <div class="side-nav-section-header">
                     <!--span class="side-nav-section-icon">📏</span-->
@@ -353,7 +349,7 @@
             <span class="theme-icon light-icon">☀</span>
             <span class="theme-icon dark-icon" style="display: none;">☾</span>
         </div>
-        <iframe id="contentFrame" class="content-frame" src="home.html"></iframe>
+        <iframe id="contentFrame" class="content-frame" src="pages/rules/insert.html"></iframe>
         <div id="loadingIndicator" class="loading-indicator">
             <div class="spinner"></div>
         </div>
@@ -372,7 +368,7 @@
         let isNavExpanded = true;
         
         // Current page path
-        let currentPath = 'home.html';
+        let currentPath = 'pages/rules/insert.html';
         
         // Toggle sidebar
         function toggleSideNav() {
